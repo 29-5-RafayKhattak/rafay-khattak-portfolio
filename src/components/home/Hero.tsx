@@ -237,7 +237,7 @@ export function Hero({
           added on top so the role line clears the sensor housing now that the
           document paints under it.
         */}
-        <div className="gutter relative z-40 flex shrink-0 items-baseline justify-between pt-[calc(clamp(3.25rem,10vh,6.75rem)+var(--safe-top))]">
+        <div className="gutter relative z-40 flex shrink-0 items-baseline justify-between pt-[calc(var(--nav-block)+clamp(0.5rem,2.2vh,1.5rem)+var(--safe-top))]">
           <motion.div variants={heroRole} initial="hidden" animate="show">
             <p className="hero-role eyebrow text-[var(--color-muted)]">
               {person.title}

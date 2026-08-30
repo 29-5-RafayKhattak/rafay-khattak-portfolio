@@ -46,6 +46,89 @@ export const heroNav: Variants = {
   show: { opacity: 1, y: 0, transition: transition(0.8, HERO_TIMELINE.nav) },
 };
 
+/* -------------------------------------------------------------------------- */
+/* Navigation load sequence                                                    */
+/*                                                                             */
+/* Reads left to right, the way the bar is composed: the status line, then the */
+/* links, then the call to action. Deliberately short — the whole run is done  */
+/* inside 800ms, because navigation that animates in is navigation you cannot  */
+/* click yet. Each part travels 8px on Y and nothing scales.                   */
+/* -------------------------------------------------------------------------- */
+
+const NAV_EASE = EASE_OUT_EXPO;
+
+/** Parent of the three groups; children fire on the stagger below. */
+export const navShell: Variants = {
+  hidden: {},
+  show: { transition: { delayChildren: 0.06, staggerChildren: 0.08 } },
+};
+
+export const navPart: Variants = {
+  hidden: { opacity: 0, y: -8 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: NAV_EASE },
+  },
+};
+
+/** The link row staggers its own items inside the second beat. */
+export const navLinkGroup: Variants = {
+  hidden: {},
+  show: { transition: { delayChildren: 0.14, staggerChildren: 0.045 } },
+};
+
+export const navLinkItem: Variants = {
+  hidden: { opacity: 0, y: -8 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: NAV_EASE } },
+};
+
+/* -------------------------------------------------------------------------- */
+/* Mobile menu                                                                 */
+/*                                                                             */
+/* Four beats inside ~620ms: the ground arrives, then the numbers, then the    */
+/* labels lift out of their masks, then the footer. The labels are the moment, */
+/* so they get the longest travel and everything else is support.              */
+/* -------------------------------------------------------------------------- */
+
+export const menuSurface: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { duration: 0.34, ease: NAV_EASE, when: "beforeChildren" },
+  },
+  exit: { opacity: 0, transition: { duration: 0.26, ease: EASE_OUT_QUART } },
+};
+
+export const menuList: Variants = {
+  hidden: {},
+  show: { transition: { delayChildren: 0.08, staggerChildren: 0.055 } },
+  exit: { transition: { staggerChildren: 0.025, staggerDirection: -1 } },
+};
+
+/** The label rides up out of an overflow-hidden row. */
+export const menuLabel: Variants = {
+  hidden: { y: "105%" },
+  show: { y: "0%", transition: { duration: 0.62, ease: NAV_EASE } },
+  exit: { y: "105%", transition: { duration: 0.24, ease: EASE_OUT_QUART } },
+};
+
+export const menuNumber: Variants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.5, ease: NAV_EASE } },
+  exit: { opacity: 0, transition: { duration: 0.2 } },
+};
+
+export const menuFoot: Variants = {
+  hidden: { opacity: 0, y: 12 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: NAV_EASE, delay: 0.34 },
+  },
+  exit: { opacity: 0, transition: { duration: 0.2 } },
+};
+
 export const heroRole: Variants = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: transition(1, HERO_TIMELINE.role) },

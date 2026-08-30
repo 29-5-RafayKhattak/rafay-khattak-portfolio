@@ -24,7 +24,7 @@ export const person = {
   titleShort: "AI Engineer & Software Developer",
   intro:
     "I build intelligent digital products, AI-powered systems and modern software experiences.",
-  availability: "Available for New Projects",
+  availability: "Open for New Projects",
   /* Confirmed indirectly and safely: FAST-NUCES is a Pakistani university
      and the client operates in Pakistan's onshore fields. Kept at country
      level — no city has been stated. */

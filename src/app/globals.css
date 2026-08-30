@@ -21,6 +21,13 @@
   /* Accent — warm brown drawn from the portrait. Used sparingly. ---------- */
   --color-accent: #9a6840;
   --color-accent-soft: rgba(154, 104, 64, 0.12);
+  /* A step lighter than the accent, for the marks that have to read at 4-5px:
+     the active-navigation dot and the scroll progress line. Neat --color-accent
+     is a mid-tone that disappears against paper at that size. */
+  --color-accent-lift: #a97956;
+
+  /* The one green on the site. Availability, and nothing else. ------------ */
+  --color-live: #3faa62;
 
   /* Dark scenes ---------------------------------------------------------- */
   --color-night: #111111;
@@ -76,6 +83,22 @@
    */
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  /*
+   * How much room the fixed header occupies at the top of the page, measured
+   * in its expanded state — which is the only state that matters here, since
+   * the hero is what sits under it and the hero is only ever read from the
+   * top. Named once so the hero clears the bar by construction instead of by
+   * a padding value that has to be re-guessed every time the bar changes
+   * shape. Below `lg` the bar is a single row; from `lg` it gains the utility
+   * strip above the card.
+   */
+  --nav-block: 4.875rem;
+  /* The two vertical paddings the bar moves between. Tokens rather than
+     literals so `lg` can give the panel more air without the component
+     needing to know a breakpoint. */
+  --nav-pad: 1.35rem;
+  --nav-pad-compact: 0.85rem;
 
   --step-eyebrow: clamp(0.625rem, 0.58rem + 0.2vw, 0.75rem);
   --step-body: clamp(0.9375rem, 0.9rem + 0.25vw, 1.0625rem);
@@ -136,6 +159,15 @@
     --shell-inset: 0px;
     --shell-radius: 0px;
     --stage-height: 100svh;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    /* Utility strip (2.875rem) + the card's own gap (0.5rem) + the card. */
+    --nav-block: 9.9rem;
+    --nav-pad: 1.7rem;
+    --nav-pad-compact: 0.95rem;
   }
 }
 
@@ -473,18 +505,24 @@ html.lenis body {
    AVAILABILITY PULSE
    ========================================================================== */
 
+/*
+ * One ring, then a long wait. The expansion occupies the first ~28% of the
+ * cycle and the remaining ~3.2s is dead air, which is the difference between
+ * a status light and a notification badge. Transform and opacity only.
+ */
 .availability-halo {
-  animation: availability-pulse 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: availability-pulse 4.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  transform-origin: 50% 50%;
 }
 
 @keyframes availability-pulse {
   0% {
     transform: scale(1);
-    opacity: 0.55;
+    opacity: 0.5;
   }
-  70%,
+  28%,
   100% {
-    transform: scale(2.5);
+    transform: scale(2.9);
     opacity: 0;
   }
 }
@@ -675,6 +713,180 @@ html.lenis body {
   background-color: var(--p-accent, var(--color-ink));
   border-color: var(--p-accent, var(--color-ink));
   color: #ffffff;
+}
+
+/* ==========================================================================
+   NAVIGATION
+   The bar is meant to be almost nothing at rest and detailed once touched, so
+   most of what is here is interaction state rather than appearance.
+   ========================================================================== */
+
+/*
+ * LABEL SWAP
+ * The label rides up out of a masked row while a second copy of it arrives
+ * from below. Two copies rather than one moving element, because a single
+ * label travelling up and back reads as a nudge; two reading as one replacing
+ * the other is what makes it feel typeset.
+ *
+ * Gated on `hover: hover`. A touch device fires :hover on tap and holds it
+ * there, which would leave the label parked half way between the two copies
+ * until something else was tapped.
+ */
+.nav-swap {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.nav-swap-in,
+.nav-swap-out {
+  display: block;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-swap-in,
+  .nav-swap-out {
+    transition: transform 400ms var(--ease-out-expo);
+  }
+
+  .nav-swap-out {
+    position: absolute;
+    inset: 0;
+    transform: translateY(105%);
+  }
+
+  .nav-link:hover .nav-swap-in,
+  .nav-link:focus-visible .nav-swap-in {
+    transform: translateY(-105%);
+  }
+
+  .nav-link:hover .nav-swap-out,
+  .nav-link:focus-visible .nav-swap-out {
+    transform: translateY(0);
+  }
+}
+
+/*
+ * Reduced motion keeps the colour change and drops the swap entirely — the
+ * second copy is removed from the box rather than left underneath it, so the
+ * row cannot report two labels to a screen reader or leave the mask holding a
+ * duplicate that never moves.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .nav-swap-out {
+    display: none;
+  }
+
+  .nav-link:hover .nav-swap-in,
+  .nav-link:focus-visible .nav-swap-in {
+    transform: none;
+  }
+}
+
+/*
+ * THE DESKTOP CARD
+ * From `lg` the bar becomes a raised panel floating over the page rather than
+ * type sitting on it: its own near-white ground, a large radius and a shadow
+ * deep enough to lift it off the canvas without becoming a drop shadow.
+ *
+ * Opaque on purpose. The panel passes over charcoal rooms as well as paper, and
+ * an opaque surface reads identically over both — which is why the contents of
+ * the card do not take part in the light/dark inversion the rest of the bar
+ * does. Only the utility strip above it, which is translucent, still inverts.
+ */
+.nav-card {
+  background-image: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    var(--color-surface) 100%
+  );
+  border: 1px solid rgba(17, 17, 17, 0.06);
+  box-shadow:
+    0 1px 2px rgba(17, 17, 17, 0.03),
+    0 24px 56px -28px rgba(17, 17, 17, 0.22);
+}
+
+/* The monogram, and the only place the serif appears. */
+.monogram {
+  font-family: var(--font-monogram), "Iowan Old Style", Georgia, serif;
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--color-accent-lift);
+}
+
+/*
+ * The active item sits in a chip rather than only carrying the dot, so the
+ * current section is legible at a glance and not only to someone hunting for a
+ * 5px mark. The chip is a background, so it can cross-fade without moving the
+ * label a pixel.
+ */
+.nav-chip {
+  background-color: rgba(17, 17, 17, 0.045);
+}
+
+/*
+ * A warm bloom behind the call to action. Blurred well past the button's own
+ * edge and sitting under it, so what reads is a glow on the paper rather than
+ * a border or a second shape. Sized in em so it tracks the button.
+ */
+.cta-glow {
+  position: absolute;
+  inset: -55% -18%;
+  z-index: -1;
+  border-radius: 9999px;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    color-mix(in srgb, var(--color-accent-lift) 58%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent-lift) 18%, transparent) 45%,
+    transparent 72%
+  );
+  filter: blur(16px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta-glow {
+    transition: opacity 520ms var(--ease-out-expo);
+  }
+
+  .nav-cta:hover .cta-glow,
+  .nav-cta:focus-visible .cta-glow {
+    opacity: 0.9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-glow {
+    transition: none;
+  }
+}
+
+/*
+ * CALL TO ACTION
+ * A warm-brown ground wiped across the button from the left. `scaleX` on a
+ * layer that is already there, so the hover costs one compositor property and
+ * no paint — a background-color transition on the button itself would repaint
+ * the whole control including its type.
+ */
+.cta-sweep {
+  position: absolute;
+  inset: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background-color: var(--color-accent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta-sweep {
+    transition: transform 520ms var(--ease-out-expo);
+  }
+
+  .nav-cta:hover .cta-sweep,
+  .nav-cta:focus-visible .cta-sweep {
+    transform: scaleX(1);
+  }
 }
 
 /* ==========================================================================
