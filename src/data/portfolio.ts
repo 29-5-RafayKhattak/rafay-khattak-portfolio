@@ -1,3 +1,5 @@
+import { SITE_ORIGIN } from "@/lib/site-origin";
+
 /**
  * -----------------------------------------------------------------------------
  * SINGLE SOURCE OF TRUTH FOR ALL PORTFOLIO CONTENT
@@ -462,5 +464,5 @@ export const site: Site = {
   name: person.fullName,
   description: person.intro,
   builtBy: "Designed & Built by Rafay Khattak",
-  url: "https://rafayktk.com",
+  url: SITE_ORIGIN,
 };
