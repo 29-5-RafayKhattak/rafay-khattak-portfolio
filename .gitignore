@@ -33,6 +33,11 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Payload's local-disk upload fallback. Real uploads go to object storage; this
+# directory only exists when a developer runs without bucket credentials, and it
+# is generated output either way.
+/media/
+
 # local agent config — not application code
 .claude/
 

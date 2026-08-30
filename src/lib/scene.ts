@@ -24,20 +24,25 @@
  * -----------------------------------------------------------------------------
  */
 
-import { projects } from "@/data/projects";
-
 /** Viewport heights spent on one scene sliding away to reveal the next. */
 export const CURTAIN = 100;
 
 /**
  * Scroll spent on each project in the Work sequence.
  *
- * Derived rather than written down: the budget below used to be a fixed number
- * chosen for a five-project sequence, so every project added or removed
- * silently re-paced the whole run — four projects sharing a five-project budget
- * scroll noticeably slower than intended.
+ * Derived rather than written down: a fixed total chosen for a five-project
+ * sequence means every project added or removed silently re-paces the whole
+ * run — four projects sharing a five-project budget scroll noticeably slower
+ * than intended.
+ *
+ * Exported because the count now comes from the database at request time, so
+ * the budget is multiplied out by the component that actually knows how many
+ * projects it received rather than by this module at import time.
  */
-const PER_PROJECT = 38;
+export const PER_PROJECT = 38;
+
+/** Scroll budget for a Work sequence of `count` projects. */
+export const projectsSceneHeight = (count: number) => PER_PROJECT * count;
 
 /** Scroll budget (in vh) each scene's own choreography gets. */
 export const SCENE = {
@@ -47,8 +52,8 @@ export const SCENE = {
   about: 90,
   /** Five metrics, ~24vh each. */
   stats: 120,
-  /** ~38vh per project — the longest run on the page. */
-  projects: PER_PROJECT * projects.length,
+  /* The Work sequence is not here: its length depends on how many projects the
+     database returns, so it is computed per render by projectsSceneHeight(). */
   /** Horizontal word travel. */
   statement: 75,
 } as const;

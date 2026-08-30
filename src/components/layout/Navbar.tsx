@@ -5,7 +5,8 @@ import { ArrowUpRight } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { navigation, person } from "@/data/portfolio";
+import type { SocialLink } from "@/data/portfolio";
+import type { SiteSettings } from "@/lib/cms/content";
 import { heroNav, EASE_OUT_EXPO } from "@/lib/animations";
 import { anchorOffset } from "@/lib/navigation";
 import { AvailabilityBadge } from "@/components/ui/AvailabilityBadge";
@@ -21,7 +22,15 @@ import { useSmoothScroll } from "@/components/layout/SmoothScroll";
  * Entrance + hover + menu are Framer Motion. Nothing here is scroll-scrubbed;
  * the only scroll input is a boolean "has the page moved" flag.
  */
-export function Navbar() {
+export function Navbar({
+  navigation,
+  person,
+  socials,
+}: {
+  navigation: SiteSettings["navigation"];
+  person: SiteSettings["person"];
+  socials: SocialLink[];
+}) {
   const [compact, setCompact] = useState(false);
   const [open, setOpen] = useState(false);
   const [scrolledSection, setScrolledSection] = useState("home");
@@ -112,7 +121,9 @@ export function Navbar() {
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
     };
-  }, [onHome]);
+    // `navigation` is read inside `measure`, so the effect has to re-run when
+    // the nav changes — it now comes from the CMS and is no longer a constant.
+  }, [onHome, navigation]);
 
   /*
    * While the menu is open: the page beneath is frozen, Escape closes it, and
@@ -207,7 +218,7 @@ export function Navbar() {
             */}
             <div className="flex items-center">
               <div className="hidden xl:block">
-                <AvailabilityBadge night={night} />
+                <AvailabilityBadge availability={person.availability} night={night} />
               </div>
               <a
                 href={onHome ? "#home" : "/"}
@@ -382,8 +393,8 @@ export function Navbar() {
                 transition={{ duration: 0.6, delay: 0.35 }}
                 className="flex flex-col gap-5"
               >
-                <SocialLinks layout="row" night />
-                <AvailabilityBadge night />
+                <SocialLinks socials={socials} layout="row" night />
+                <AvailabilityBadge availability={person.availability} night />
               </motion.div>
             </div>
           </motion.div>

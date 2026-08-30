@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useCallback, useState } from "react";
 
-import { education, educationIntro, sectionLabels } from "@/data/portfolio";
+import type { EducationStage as EducationStageData } from "@/data/portfolio";
 import { fadeUp, IN_VIEW_SOFT, staggerGroup } from "@/lib/animations";
 import { DistinctionMoment } from "@/components/education/DistinctionMoment";
 import { EducationStage } from "@/components/education/EducationStage";
@@ -46,7 +46,15 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
  * its finished state, so no information depends on a scroll position.
  * -----------------------------------------------------------------------------
  */
-export function EducationSection() {
+export function EducationSection({
+  education,
+  intro,
+  label,
+}: {
+  education: EducationStageData[];
+  intro: { statement: string[]; lede: string };
+  label: string;
+}) {
   const [distinctionHolding, setDistinctionHolding] = useState(false);
 
   // Stable, so the child's reduced-motion release effect does not re-run.
@@ -59,12 +67,12 @@ export function EducationSection() {
   return (
     <section
       id="education"
-      aria-label={sectionLabels.education}
+      aria-label={label}
       className="relative z-0 bg-[var(--color-surface)]"
     >
       <div className="gutter py-[clamp(4.5rem,12vh,9rem)]">
         <SectionLabel index="05" className="mb-[clamp(2.5rem,7vh,5rem)]">
-          {sectionLabels.education}
+          {label}
         </SectionLabel>
 
         {/* Intro ------------------------------------------------------- */}
@@ -76,7 +84,7 @@ export function EducationSection() {
           className="max-w-[46rem]"
         >
           <h2 className="text-[clamp(1.875rem,5vw,3.75rem)] leading-[1.05] font-semibold tracking-[-0.04em] text-balance">
-            {educationIntro.statement.map((line, i) => (
+            {intro.statement.map((line, i) => (
               <span key={line} className="block overflow-hidden">
                 <motion.span
                   variants={fadeUp}
@@ -93,7 +101,7 @@ export function EducationSection() {
             variants={fadeUp}
             className="mt-[clamp(1.5rem,4vh,2.25rem)] max-w-[54ch] text-[length:var(--step-body)] leading-[1.65] text-[var(--color-muted)]"
           >
-            {educationIntro.lede}
+            {intro.lede}
           </motion.p>
 
           {/* The progression, stated once and held still. */}

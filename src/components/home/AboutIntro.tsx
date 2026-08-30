@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 
-import { about, sectionLabels } from "@/data/portfolio";
+import type { About } from "@/lib/cms/content";
 import { LAYER, SCENE, sceneTrigger } from "@/lib/scene";
 import { gsap, useScrollScene } from "@/hooks/useScrollScene";
 import { Scene } from "@/components/layout/Scene";
@@ -22,7 +22,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
  * ANIMATION OWNERSHIP — GSAP ScrollTrigger (scrubbed) throughout.
  * -----------------------------------------------------------------------------
  */
-export function AboutIntro() {
+export function AboutIntro({ about, label }: { about: About; label: string }) {
   const sectionRef = useRef<HTMLElement>(null);
 
   const reducedMotion = useScrollScene(sectionRef, (scope) => {
@@ -83,7 +83,7 @@ export function AboutIntro() {
   return (
     <Scene
       id="about"
-      ariaLabel={sectionLabels.about}
+      ariaLabel={label}
       sectionRef={sectionRef}
       content={SCENE.about}
       layer={LAYER.about}
@@ -94,7 +94,7 @@ export function AboutIntro() {
       fallback={
         <>
           <SectionLabel index="01" night className="mb-10">
-            {sectionLabels.about}
+            {label}
           </SectionLabel>
           {statement}
           <p className="mt-8 max-w-[52ch] text-[length:var(--step-lead)] leading-[1.5] text-[var(--color-night-muted)]">
@@ -109,7 +109,7 @@ export function AboutIntro() {
           night
           className="mb-[clamp(1.75rem,4.5vh,3.25rem)]"
         >
-          {sectionLabels.about}
+          {label}
         </SectionLabel>
 
         {statement}

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 
-import { contact, sectionLabels } from "@/data/portfolio";
+import type { Contact } from "@/lib/cms/content";
 import { fadeUp, IN_VIEW_SOFT, staggerGroup } from "@/lib/animations";
 import { gsap, useScrollScene } from "@/hooks/useScrollScene";
 import { Button } from "@/components/ui/Button";
@@ -23,7 +23,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
  *   Framer Motion      — the supporting copy and CTA, which fire once on entry.
  * -----------------------------------------------------------------------------
  */
-export function ContactCTA() {
+export function ContactCTA({ contact, label }: { contact: Contact; label: string }) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useScrollScene(sectionRef, (scope) => {
@@ -64,13 +64,13 @@ export function ContactCTA() {
     <section
       id="contact"
       ref={sectionRef}
-      aria-label={sectionLabels.contact}
+      aria-label={label}
       data-tone="night"
       className="on-night relative z-0 rounded-t-[clamp(1.25rem,2.6vw,2.25rem)] bg-[var(--color-night)]"
     >
       <div className="gutter py-[clamp(5rem,14vh,10rem)]">
         <SectionLabel index="07" night className="mb-[clamp(2.5rem,6vh,4rem)]">
-          {sectionLabels.contact}
+          {label}
         </SectionLabel>
 
         <h2 className="display max-w-[16ch]">

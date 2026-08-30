@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 
-import { horizontalWords } from "@/data/portfolio";
 import { LAYER, SCENE, sceneTrigger } from "@/lib/scene";
 import { gsap, useScrollScene } from "@/hooks/useScrollScene";
 import { Scene } from "@/components/layout/Scene";
@@ -22,7 +21,11 @@ import { Scene } from "@/components/layout/Scene";
  * ANIMATION OWNERSHIP — GSAP ScrollTrigger (scrubbed).
  * -----------------------------------------------------------------------------
  */
-export function HorizontalStatement() {
+export function HorizontalStatement({
+  horizontalWords,
+}: {
+  horizontalWords: string[];
+}) {
   const sectionRef = useRef<HTMLElement>(null);
 
   const reducedMotion = useScrollScene(sectionRef, (scope) => {

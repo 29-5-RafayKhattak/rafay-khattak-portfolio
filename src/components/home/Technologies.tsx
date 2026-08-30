@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 
-import { sectionLabels, technologies } from "@/data/portfolio";
 import { gsap, useScrollScene } from "@/hooks/useScrollScene";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
@@ -21,7 +20,13 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
  * ANIMATION OWNERSHIP — GSAP ScrollTrigger (scrubbed).
  * -----------------------------------------------------------------------------
  */
-export function Technologies() {
+export function Technologies({
+  technologies,
+  label,
+}: {
+  technologies: string[];
+  label: string;
+}) {
   const sectionRef = useRef<HTMLElement>(null);
 
   const reducedMotion = useScrollScene(sectionRef, (scope) => {
@@ -49,12 +54,12 @@ export function Technologies() {
   return (
     <section
       ref={sectionRef}
-      aria-label={sectionLabels.technologies}
+      aria-label={label}
       className="relative z-0 overflow-hidden bg-[var(--color-canvas)] pt-[clamp(1rem,4vh,3rem)] pb-[clamp(5rem,13vh,9rem)]"
     >
       <div className="gutter">
         <SectionLabel index="06" className="mb-[clamp(2rem,5vh,3.5rem)]">
-          {sectionLabels.technologies}
+          {label}
         </SectionLabel>
       </div>
 

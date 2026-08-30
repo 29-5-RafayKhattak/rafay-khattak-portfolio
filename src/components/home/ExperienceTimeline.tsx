@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-import { experience, sectionLabels } from "@/data/portfolio";
+import type { Experience } from "@/data/portfolio";
 import { fadeUp, IN_VIEW_SOFT, staggerGroup } from "@/lib/animations";
 import { FINE_POINTER, useMediaQuery } from "@/hooks/useMediaQuery";
 import { gsap, useScrollScene } from "@/hooks/useScrollScene";
@@ -39,7 +39,13 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
  * Each owns a different element, so none of them contend.
  * -----------------------------------------------------------------------------
  */
-export function ExperienceTimeline() {
+export function ExperienceTimeline({
+  experience,
+  label,
+}: {
+  experience: Experience[];
+  label: string;
+}) {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollActive, setScrollActive] = useState(0);
   const [hovered, setHovered] = useState<number | null>(null);
@@ -72,12 +78,12 @@ export function ExperienceTimeline() {
     <section
       id="experience"
       ref={sectionRef}
-      aria-label={sectionLabels.experience}
+      aria-label={label}
       className="relative z-0 bg-[var(--color-canvas)]"
     >
       <div className="gutter py-[clamp(4.5rem,12vh,9rem)]">
         <SectionLabel index="04" className="mb-[clamp(2.5rem,7vh,5rem)]">
-          {sectionLabels.experience}
+          {label}
         </SectionLabel>
 
         <motion.ol

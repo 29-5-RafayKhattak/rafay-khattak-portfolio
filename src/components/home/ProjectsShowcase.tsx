@@ -2,11 +2,11 @@
 
 import { useRef } from "react";
 
-import { projects, sectionLabels } from "@/data/portfolio";
+import type { Project } from "@/data/projects";
 import { paletteVars } from "@/data/projects";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { LAYER, SCENE, sceneTrigger } from "@/lib/scene";
+import { LAYER, projectsSceneHeight, sceneTrigger } from "@/lib/scene";
 import { gsap, useScrollScene } from "@/hooks/useScrollScene";
 import { Scene } from "@/components/layout/Scene";
 import { ProjectVisual } from "@/components/ui/ProjectVisual";
@@ -30,7 +30,13 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
  * ANIMATION OWNERSHIP — GSAP ScrollTrigger (scrubbed) for the sequence.
  * -----------------------------------------------------------------------------
  */
-export function ProjectsShowcase() {
+export function ProjectsShowcase({
+  projects,
+  label,
+}: {
+  projects: Project[];
+  label: string;
+}) {
   const sectionRef = useRef<HTMLElement>(null);
 
   const reducedMotion = useScrollScene(sectionRef, (scope) => {
@@ -232,9 +238,9 @@ export function ProjectsShowcase() {
   return (
     <Scene
       id="work"
-      ariaLabel={sectionLabels.work}
+      ariaLabel={label}
       sectionRef={sectionRef}
-      content={SCENE.projects}
+      content={projectsSceneHeight(projects.length)}
       layer={LAYER.projects}
       roundedTop
       reducedMotion={reducedMotion}
@@ -242,7 +248,7 @@ export function ProjectsShowcase() {
       fallback={
         <>
           <SectionLabel index="03" className="mb-12">
-            {sectionLabels.work}
+            {label}
           </SectionLabel>
           <ul className="grid gap-14">
             {projects.map((project) => (
@@ -300,7 +306,7 @@ export function ProjectsShowcase() {
           value alone tucks the eyebrow under it on short screens.
         */}
         <div className="gutter shrink-0 pt-[clamp(6.25rem,9.5vh,7rem)]">
-          <SectionLabel index="03">{sectionLabels.work}</SectionLabel>
+          <SectionLabel index="03">{label}</SectionLabel>
         </div>
 
         {/* Slides ------------------------------------------------------ */}

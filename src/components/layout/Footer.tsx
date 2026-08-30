@@ -2,7 +2,8 @@
 
 import { usePathname, useRouter } from "next/navigation";
 
-import { navigation, person, site } from "@/data/portfolio";
+import type { SocialLink } from "@/data/portfolio";
+import type { SiteSettings } from "@/lib/cms/content";
 import { anchorOffset } from "@/lib/navigation";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { useSmoothScroll } from "@/components/layout/SmoothScroll";
@@ -11,7 +12,17 @@ import { useSmoothScroll } from "@/components/layout/SmoothScroll";
  * Closes the page on the same two words it opened with — outlined above,
  * solid below — so the last thing seen is the first thing seen.
  */
-export function Footer() {
+export function Footer({
+  navigation,
+  person,
+  site,
+  socials,
+}: {
+  navigation: SiteSettings["navigation"];
+  person: SiteSettings["person"];
+  site: SiteSettings["site"];
+  socials: SocialLink[];
+}) {
   const { scrollTo } = useSmoothScroll();
   const pathname = usePathname();
   const router = useRouter();
@@ -68,7 +79,7 @@ export function Footer() {
             </ul>
           </nav>
 
-          <SocialLinks layout="row" night />
+          <SocialLinks socials={socials} layout="row" night />
         </div>
 
         {/* The sign-off ------------------------------------------------- */}

@@ -5,7 +5,8 @@ import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import { useRef } from "react";
 
-import { person, portrait, sectionLabels } from "@/data/portfolio";
+import type { SocialLink } from "@/data/portfolio";
+import type { SiteSettings } from "@/lib/cms/content";
 import {
   heroCta,
   heroDescription,
@@ -48,7 +49,17 @@ import { SocialLinks } from "@/components/ui/SocialLinks";
  * plain element, never on a `motion.*` one.
  * -----------------------------------------------------------------------------
  */
-export function Hero() {
+export function Hero({
+  person,
+  portrait,
+  aboutLabel,
+  socials,
+}: {
+  person: SiteSettings["person"];
+  portrait: SiteSettings["portrait"];
+  aboutLabel: string;
+  socials: SocialLink[];
+}) {
   const sectionRef = useRef<HTMLElement>(null);
   const reducedMotion = useReducedMotion();
   const { scrollTo } = useSmoothScroll();
@@ -343,7 +354,7 @@ export function Hero() {
             footer of the hero instead.
         --------------------------------------------------------------- */}
         <div className="hero-social-rail absolute top-1/2 right-[clamp(1rem,2.2vw,2.25rem)] z-40 hidden -translate-y-1/2 lg:block">
-          <SocialLinks layout="stack" animated />
+          <SocialLinks socials={socials} layout="stack" animated />
         </div>
 
         {/* ---------------------------------------------------------------
@@ -387,7 +398,7 @@ export function Hero() {
               animate="show"
               className="lg:hidden"
             >
-              <SocialLinks layout="row" />
+              <SocialLinks socials={socials} layout="row" />
             </motion.div>
 
             {/* Scroll indicator -------------------------------------- */}
@@ -416,7 +427,7 @@ export function Hero() {
             <span className="eyebrow text-[var(--color-accent)]">01</span>
             <span className="h-px w-14 bg-[var(--color-night-line)]" />
             <span className="eyebrow text-[var(--color-night-muted)]">
-              {sectionLabels.about}
+              {aboutLabel}
             </span>
           </div>
         </div>

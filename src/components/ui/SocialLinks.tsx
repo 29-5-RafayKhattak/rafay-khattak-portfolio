@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-import { socials, type SocialIcon } from "@/data/portfolio";
+import type { SocialIcon, SocialLink } from "@/data/portfolio";
 import { heroSocialGroup, heroSocialItem } from "@/lib/animations";
 
 const ICONS: Record<SocialIcon, LucideIcon> = {
@@ -14,6 +14,7 @@ const ICONS: Record<SocialIcon, LucideIcon> = {
 };
 
 type Props = {
+  socials: SocialLink[];
   /** `stack` is the vertical hero rail; `row` is used in the footer. */
   layout?: "stack" | "row";
   night?: boolean;
@@ -27,6 +28,7 @@ type Props = {
  * vertical rail so the resting state stays as quiet as an icon row.
  */
 export function SocialLinks({
+  socials,
   layout = "stack",
   night = false,
   animated = false,

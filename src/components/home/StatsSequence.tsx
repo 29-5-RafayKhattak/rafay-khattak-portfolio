@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 
-import { sectionLabels, stats } from "@/data/portfolio";
+import type { Stat } from "@/data/portfolio";
 import { LAYER, SCENE, sceneTrigger } from "@/lib/scene";
 import { gsap, useScrollScene } from "@/hooks/useScrollScene";
 import { Scene } from "@/components/layout/Scene";
@@ -20,7 +20,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
  * opacity are touched, so each slide is a compositor-only change.
  * -----------------------------------------------------------------------------
  */
-export function StatsSequence() {
+export function StatsSequence({ stats, label }: { stats: Stat[]; label: string }) {
   const sectionRef = useRef<HTMLElement>(null);
 
   const reducedMotion = useScrollScene(sectionRef, (scope) => {
@@ -119,7 +119,7 @@ export function StatsSequence() {
 
   return (
     <Scene
-      ariaLabel={sectionLabels.stats}
+      ariaLabel={label}
       sectionRef={sectionRef}
       content={SCENE.stats}
       layer={LAYER.stats}
@@ -129,7 +129,7 @@ export function StatsSequence() {
       fallback={
         <>
           <SectionLabel index="02" night className="mb-12">
-            {sectionLabels.stats}
+            {label}
           </SectionLabel>
           <dl className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {stats.map((stat) => (
@@ -161,7 +161,7 @@ export function StatsSequence() {
       <div className="relative flex h-full flex-col">
         <div className="gutter shrink-0 pt-[clamp(4.5rem,9vh,6.25rem)]">
           <SectionLabel index="02" night>
-            {sectionLabels.stats}
+            {label}
           </SectionLabel>
         </div>
 

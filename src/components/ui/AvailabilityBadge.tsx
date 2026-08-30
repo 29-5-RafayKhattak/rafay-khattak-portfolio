@@ -1,7 +1,5 @@
 "use client";
 
-import { person } from "@/data/portfolio";
-
 /**
  * The status dot breathes rather than blinks — a slow halo pulse, which reads
  * as "live" without pulling focus away from the name. Pure CSS, so it costs
@@ -16,9 +14,11 @@ import { person } from "@/data/portfolio";
  * back in charge of the bar.
  */
 export function AvailabilityBadge({
+  availability,
   className = "",
   night = false,
 }: {
+  availability: string;
   className?: string;
   night?: boolean;
 }) {
@@ -41,7 +41,7 @@ export function AvailabilityBadge({
           night ? "text-[var(--color-night-muted)]" : "text-[var(--color-muted)]",
         ].join(" ")}
       >
-        {person.availability}
+        {availability}
       </span>
     </div>
   );
