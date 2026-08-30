@@ -97,7 +97,7 @@ export function AboutIntro() {
             {sectionLabels.about}
           </SectionLabel>
           {statement}
-          <p className="mt-8 max-w-[52ch] text-[var(--step-lead)] leading-[1.5] text-[var(--color-night-muted)]">
+          <p className="mt-8 max-w-[52ch] text-[length:var(--step-lead)] leading-[1.5] text-[var(--color-night-muted)]">
             {about.paragraph}
           </p>
         </>
@@ -119,7 +119,7 @@ export function AboutIntro() {
             className="about-rule block h-px w-full origin-left bg-[var(--color-night-line)]"
             aria-hidden="true"
           />
-          <p className="about-tail mt-6 max-w-[54ch] text-[var(--step-lead)] leading-[1.5] text-[var(--color-night-muted)]">
+          <p className="about-tail mt-6 max-w-[54ch] text-[length:var(--step-lead)] leading-[1.5] text-[var(--color-night-muted)]">
             {about.paragraph}
           </p>
         </div>

@@ -71,7 +71,7 @@ export function EducationStage({
         className={
           emphasis
             ? "sr-only"
-            : "mt-5 text-[var(--step-h3)] leading-[1.05] font-semibold tracking-[-0.03em] text-balance"
+            : "mt-5 text-[length:var(--step-h3)] leading-[1.05] font-semibold tracking-[-0.03em] text-balance"
         }
       >
         {stage.qualification}
@@ -88,7 +88,7 @@ export function EducationStage({
       {stage.institution && (
         <motion.p
           variants={fadeUp}
-          className="mt-[clamp(1.5rem,4vh,2.25rem)] max-w-[38ch] text-[var(--step-body)] leading-[1.5] text-balance text-[var(--color-ink)]"
+          className="mt-[clamp(1.5rem,4vh,2.25rem)] max-w-[38ch] text-[length:var(--step-body)] leading-[1.5] text-balance text-[var(--color-ink)]"
         >
           {stage.institution}
           {stage.institutionShort && (

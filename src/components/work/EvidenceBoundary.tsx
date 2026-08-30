@@ -73,7 +73,7 @@ export function EvidenceBoundary({
               </div>
 
               <p
-                className="mt-5 border-t pt-6 text-[var(--step-lead)] leading-[1.55]"
+                className="mt-5 border-t pt-6 text-[length:var(--step-lead)] leading-[1.55]"
                 style={{
                   borderColor: column.accent
                     ? "var(--p-accent, var(--color-accent))"

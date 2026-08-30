@@ -46,7 +46,7 @@ export function TechnicalNotes({
 
         <motion.p
           variants={fadeUp}
-          className="mt-7 max-w-[62ch] text-[var(--step-lead)] leading-[1.6] text-[var(--color-muted)]"
+          className="mt-7 max-w-[62ch] text-[length:var(--step-lead)] leading-[1.6] text-[var(--color-muted)]"
         >
           {summary}
         </motion.p>

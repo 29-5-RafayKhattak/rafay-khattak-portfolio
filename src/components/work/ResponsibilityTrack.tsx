@@ -110,7 +110,7 @@ export function ResponsibilityTrack({
       </div>
 
       {/* The authorship caveat ------------------------------------- */}
-      <p className="mt-[clamp(2rem,5vh,3rem)] border-l-2 border-[var(--color-accent)] pl-5 text-[var(--step-lead)] leading-[1.5] text-[var(--color-ink)]">
+      <p className="mt-[clamp(2rem,5vh,3rem)] border-l-2 border-[var(--color-accent)] pl-5 text-[length:var(--step-lead)] leading-[1.5] text-[var(--color-ink)]">
         {caveat}
       </p>
     </div>

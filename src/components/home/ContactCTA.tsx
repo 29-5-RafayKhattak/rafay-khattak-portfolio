@@ -98,7 +98,7 @@ export function ContactCTA() {
           className="mt-[clamp(2.5rem,7vh,4.5rem)] flex flex-col gap-10 md:flex-row md:items-end md:justify-between"
         >
           <motion.div variants={fadeUp}>
-            <p className="max-w-[38ch] text-[var(--step-lead)] leading-[1.45] text-[var(--color-night-muted)]">
+            <p className="max-w-[38ch] text-[length:var(--step-lead)] leading-[1.45] text-[var(--color-night-muted)]">
               {contact.subline}{" "}
               <span className="text-[var(--color-night-ink)]">
                 {contact.sublineAccent}

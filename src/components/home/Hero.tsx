@@ -356,7 +356,7 @@ export function Hero() {
                 variants={heroDescription}
                 initial="hidden"
                 animate="show"
-                className="text-[var(--step-lead)] leading-[1.4] tracking-[-0.015em] text-balance text-[var(--color-ink)]"
+                className="text-[length:var(--step-lead)] leading-[1.4] tracking-[-0.015em] text-balance text-[var(--color-ink)]"
               >
                 {person.intro}
               </motion.p>

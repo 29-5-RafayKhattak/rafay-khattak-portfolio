@@ -147,7 +147,7 @@ export function CaseStudySection({
             <motion.p
               key={i}
               variants={fadeUp}
-              className={`max-w-[66ch] text-[var(--step-lead)] leading-[1.62] ${
+              className={`max-w-[66ch] text-[length:var(--step-lead)] leading-[1.62] ${
                 i === 0 ? "mt-6" : "mt-4"
               }`}
               style={{ color: t.body }}

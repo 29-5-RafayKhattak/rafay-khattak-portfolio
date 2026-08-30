@@ -154,11 +154,11 @@ export function ExperienceTimeline() {
                     )}
 
                     <div className="min-w-0">
-                      <h3 className="text-[var(--step-h3)] leading-[1.08] font-semibold tracking-[-0.03em] text-balance">
+                      <h3 className="text-[length:var(--step-h3)] leading-[1.08] font-semibold tracking-[-0.03em] text-balance">
                         {item.role}
                       </h3>
 
-                      <p className="mt-2 text-[var(--step-body)] text-[var(--color-muted)]">
+                      <p className="mt-2 text-[length:var(--step-body)] text-[var(--color-muted)]">
                         <span className="text-[var(--color-ink)]">
                           {item.company}
                         </span>

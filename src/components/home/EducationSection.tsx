@@ -91,7 +91,7 @@ export function EducationSection() {
 
           <motion.p
             variants={fadeUp}
-            className="mt-[clamp(1.5rem,4vh,2.25rem)] max-w-[54ch] text-[var(--step-body)] leading-[1.65] text-[var(--color-muted)]"
+            className="mt-[clamp(1.5rem,4vh,2.25rem)] max-w-[54ch] text-[length:var(--step-body)] leading-[1.65] text-[var(--color-muted)]"
           >
             {educationIntro.lede}
           </motion.p>

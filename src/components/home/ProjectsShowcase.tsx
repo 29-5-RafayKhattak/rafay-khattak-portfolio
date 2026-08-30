@@ -254,7 +254,7 @@ export function ProjectsShowcase() {
                   <div className="aspect-[4/3] max-w-xl overflow-hidden rounded-2xl border border-[var(--color-line)]">
                     <ProjectVisual variant={project.visual} accent={project.accent} palette={project.palette} />
                   </div>
-                  <h3 className="mt-5 text-[var(--step-h3)] font-semibold tracking-[-0.025em]">
+                  <h3 className="mt-5 text-[length:var(--step-h3)] font-semibold tracking-[-0.025em]">
                     {project.name}
                   </h3>
                   <p className="eyebrow mt-2 text-[var(--color-muted)]">
@@ -482,7 +482,7 @@ export function ProjectsShowcase() {
                     );
                   })()}
                   <div className="mt-6 overflow-hidden">
-                    <p className="project-copy-line text-[var(--step-body)] leading-[1.6] text-[var(--color-muted)] gpu">
+                    <p className="project-copy-line text-[length:var(--step-body)] leading-[1.6] text-[var(--color-muted)] gpu">
                       {project.description}
                     </p>
                   </div>

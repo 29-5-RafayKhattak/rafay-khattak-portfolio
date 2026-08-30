@@ -137,11 +137,18 @@ export function StatsSequence() {
                 <dt className="headline text-[var(--color-night-ink)]">
                   {stat.value}
                 </dt>
-                <dd className="mt-2">
-                  <span className="block text-[var(--step-lead)] text-[var(--color-night-ink)]">
+                {/* Same hierarchy as the pinned stage, at the smaller scale a
+                    static grid needs — reduced motion gets a considered
+                    layout, not an unstyled one. */}
+                <dd className="mt-3">
+                  <span className="block text-[length:var(--step-lead)] leading-[1.15] font-semibold tracking-[-0.02em] text-[var(--color-night-ink)]">
                     {stat.label}
                   </span>
-                  <span className="mt-1 block text-[var(--color-night-muted)]">
+                  <span
+                    aria-hidden="true"
+                    className="mt-3.5 block h-px w-8 bg-[var(--color-accent)]"
+                  />
+                  <span className="mt-3.5 block text-[length:var(--step-body)] leading-[1.6] text-[var(--color-night-muted)]">
                     {stat.caption}
                   </span>
                 </dd>
@@ -177,11 +184,27 @@ export function StatsSequence() {
                 </div>
 
                 <div className="overflow-hidden">
+                  {/*
+                    The caption carried no type styling at all — it inherited
+                    17px body text and default leading, set beside a figure
+                    rendering at over 200px. The pairing read as a headline with
+                    a footnote stuck under it rather than as two parts of one
+                    statement. It now sits at lead size with open leading, the
+                    label is set with real weight rather than medium, and an
+                    accent rule divides them — the same device the section
+                    labels and the education stages use.
+                  */}
                   <div className="stat-meta gpu">
-                    <p className="text-[var(--step-h3)] leading-[1.15] font-medium tracking-[-0.02em] text-[var(--color-night-ink)]">
+                    <p className="text-[length:var(--step-h3)] leading-[1.05] font-semibold tracking-[-0.03em] text-[var(--color-night-ink)]">
                       {stat.label}
                     </p>
-                    <p className="mt-3 max-w-[34ch] text-[var(--color-night-muted)]">
+
+                    <span
+                      aria-hidden="true"
+                      className="mt-[clamp(1.25rem,3vh,1.75rem)] block h-px w-10 bg-[var(--color-accent)]"
+                    />
+
+                    <p className="mt-[clamp(1.25rem,3vh,1.75rem)] max-w-[36ch] text-[length:var(--step-lead)] leading-[1.6] text-balance text-[var(--color-night-muted)]">
                       {stat.caption}
                     </p>
                   </div>
