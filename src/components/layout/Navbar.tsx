@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   useCallback,
@@ -489,12 +490,22 @@ export function Navbar({
                   onClick={go("#home")}
                   className="tap group hidden min-w-0 items-center gap-[clamp(0.75rem,1.2vw,1.125rem)] lg:flex"
                 >
-                  <span
-                    aria-hidden="true"
-                    className="monogram shrink-0 text-[clamp(2.25rem,3vw,2.875rem)]"
-                  >
-                    RK
-                  </span>
+                  {/*
+                    The mark itself, not two letters set in a serif. `alt` is
+                    empty on purpose: the link already carries its own name
+                    from the wordmark beside it and the sr-only suffix below,
+                    and a second reading of "RK" would announce the same
+                    destination twice.
+                  */}
+                  <Image
+                    src="/images/rk-monogram.png"
+                    alt=""
+                    width={192}
+                    height={192}
+                    priority
+                    unoptimized
+                    className="h-[clamp(2.25rem,3vw,2.875rem)] w-[clamp(2.25rem,3vw,2.875rem)] shrink-0"
+                  />
                   {/*
                     The name and the role only appear from `xl`. Between `lg`
                     and `xl` the six links and the button already claim the
@@ -523,11 +534,18 @@ export function Navbar({
                 <a
                   href={onHome ? "#home" : "/"}
                   onClick={go("#home")}
-                  className="tap tap-square text-[0.9375rem] font-semibold tracking-[-0.01em] lg:hidden"
-                  style={{ color: ink, transition: COLOR_FADE }}
+                  className="tap tap-square flex items-center lg:hidden"
                 >
-                  RK
-                  <span className="sr-only"> — {person.fullName}, home</span>
+                  <Image
+                    src="/images/rk-monogram.png"
+                    alt=""
+                    width={192}
+                    height={192}
+                    priority
+                    unoptimized
+                    className="h-[2.125rem] w-[2.125rem] shrink-0"
+                  />
+                  <span className="sr-only">{person.fullName} — home</span>
                 </a>
               </motion.div>
 

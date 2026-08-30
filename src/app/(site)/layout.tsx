@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Cormorant_Garamond } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 
 import { getContact, getSettings, getSocials } from "@/lib/cms/queries";
 import { MotionProvider } from "@/components/layout/MotionProvider";
@@ -21,18 +21,6 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-/*
- * The only serif on the site, and it exists for exactly two letters: the
- * monogram in the navigation. Loaded at a single weight and the Latin subset
- * so the cost is one small file, and given a real fallback stack because a
- * two-character mark is the last thing that should reflow late.
- */
-const monogram = Cormorant_Garamond({
-  variable: "--font-monogram",
-  subsets: ["latin"],
-  weight: ["500"],
-  display: "swap",
-});
 
 /*
  * Metadata is resolved per request from the CMS, so changing the name, the
@@ -87,7 +75,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${monogram.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <body>
         <MotionProvider>

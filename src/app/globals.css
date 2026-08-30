@@ -806,15 +806,6 @@ html.lenis body {
     0 24px 56px -28px rgba(17, 17, 17, 0.22);
 }
 
-/* The monogram, and the only place the serif appears. */
-.monogram {
-  font-family: var(--font-monogram), "Iowan Old Style", Georgia, serif;
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: 0.02em;
-  color: var(--color-accent-lift);
-}
-
 /*
  * The active item sits in a chip rather than only carrying the dot, so the
  * current section is legible at a glance and not only to someone hunting for a
