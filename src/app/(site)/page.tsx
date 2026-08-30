@@ -20,6 +20,8 @@ import {
   getStats,
   getTechnologies,
 } from "@/lib/cms/queries";
+import { personGraph } from "@/lib/seo";
+import { SITE_ORIGIN } from "@/lib/site-origin";
 
 /**
  * The homepage is one continuous scroll. Sections are ordered so the page
@@ -83,8 +85,41 @@ export default async function Home() {
 
   const labels = settings.sectionLabels;
 
+  /*
+   * Person + WebSite, on the homepage only. This is the page the entity is
+   * about, and repeating the same graph on six case studies would be the
+   * duplicate structured data that dilutes it rather than reinforcing it.
+   *
+   * Every field is read from data the site already publishes — see lib/seo.ts.
+   */
+  const portrait = settings.portrait.original;
+  const graph = personGraph({
+    person: settings.person,
+    site: settings.site,
+    socials,
+    alumniOf: education
+      .map((stage) => stage.institution)
+      .filter((name): name is string => Boolean(name)),
+    portraitUrl: portrait
+      ? portrait.startsWith("http")
+        ? portrait
+        : `${SITE_ORIGIN}${portrait}`
+      : undefined,
+  });
+
   return (
     <>
+      {/*
+        `<` is escaped rather than trusted. The values come from the CMS, which
+        only the owner writes to, but a JSON-LD block is still a script element
+        and a literal "</script>" inside one ends it early.
+      */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(graph).replace(/</g, "\\u003c"),
+        }}
+      />
       <main>
         <Hero
           person={settings.person}

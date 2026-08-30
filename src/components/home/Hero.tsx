@@ -17,6 +17,7 @@ import {
   heroScrollHint,
 } from "@/lib/animations";
 import { anchorOffset } from "@/lib/navigation";
+import { SEARCH_NAME } from "@/lib/seo";
 import { LAYER, SCENE, sceneHeight, sceneTrigger } from "@/lib/scene";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
@@ -223,6 +224,24 @@ export function Hero({
         ].join(" ")}
         style={{ height: "var(--stage-height)" }}
       >
+
+        {/*
+          THE PAGE HEADING
+          The name is set as display type across two layered elements with the
+          portrait between them, so it cannot itself be one heading element
+          without collapsing the z-order the whole composition depends on. The
+          page still needs exactly one h1, and this is it: the same words, in
+          the same order, carried for assistive technology and crawlers while
+          the visible treatment stays untouched. Placed first so the document
+          reads h1 → h2 → h3.
+
+          Written capitals, not the display ones: some screen readers spell
+          all-caps words out letter by letter, and this is the one copy of the
+          name that exists purely to be read aloud or parsed.
+        */}
+        <h1 className="sr-only">
+          {SEARCH_NAME} — {person.titleShort}
+        </h1>
 
         {/* ---------------------------------------------------------------
             TOP — role line, clear of the fixed navigation.

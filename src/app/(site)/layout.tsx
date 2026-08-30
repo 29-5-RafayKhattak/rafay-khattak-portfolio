@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { getContact, getSettings, getSocials } from "@/lib/cms/queries";
+import { OG_IMAGE, SEARCH_NAME, searchTitle } from "@/lib/seo";
 import { MotionProvider } from "@/components/layout/MotionProvider";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { Navbar } from "@/components/layout/Navbar";
@@ -37,16 +38,17 @@ const geistMono = Geist_Mono({
 export async function generateMetadata(): Promise<Metadata> {
   const { person, site } = await getSettings();
 
-  const title = `${person.fullName} — ${person.titleShort}`;
+  // The written form of the name, not the display capitals — see lib/seo.ts.
+  const title = searchTitle(person.titleShort);
 
   return {
     metadataBase: site.url ? new URL(site.url) : undefined,
     title: {
       default: title,
-      template: `%s — ${person.fullName}`,
+      template: `%s — ${SEARCH_NAME}`,
     },
     description: site.description,
-    authors: [{ name: person.fullName }],
+    authors: [{ name: SEARCH_NAME }],
     // Relative, and deliberately so: resolved against metadataBase above.
     alternates: { canonical: "/" },
     openGraph: {
@@ -54,13 +56,15 @@ export async function generateMetadata(): Promise<Metadata> {
       description: site.description,
       type: "website",
       url: "/",
-      siteName: person.fullName,
+      siteName: SEARCH_NAME,
       locale: "en_US",
+      images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: site.description,
+      images: [OG_IMAGE.url],
     },
     robots: {
       index: true,

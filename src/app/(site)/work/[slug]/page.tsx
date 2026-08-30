@@ -9,6 +9,7 @@ import {
   getSettings,
   getSocials,
 } from "@/lib/cms/queries";
+import { OG_IMAGE, SEARCH_NAME } from "@/lib/seo";
 
 /**
  * Case-study route.
@@ -42,7 +43,9 @@ export async function generateMetadata({
   params,
 }: PageProps<"/work/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const [project, settings] = await Promise.all([getProject(slug), getSettings()]);
+  // Settings are no longer needed here: the name in the card title comes from
+  // the SEO constant rather than the CMS, so this is one cached call fewer.
+  const project = await getProject(slug);
 
   if (!project?.caseStudy) return {};
 
@@ -51,7 +54,7 @@ export async function generateMetadata({
   const description =
     project.caseStudy.seoDescription ?? project.caseStudy.statement;
 
-  const ogTitle = `${project.name} — ${settings.person.fullName}`;
+  const ogTitle = `${project.name} — ${SEARCH_NAME}`;
 
   return {
     title: project.name,
@@ -68,12 +71,14 @@ export async function generateMetadata({
       description,
       type: "article",
       url: `/work/${slug}`,
-      siteName: settings.person.fullName,
+      siteName: SEARCH_NAME,
+      images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: ogTitle,
       description,
+      images: [OG_IMAGE.url],
     },
   };
 }

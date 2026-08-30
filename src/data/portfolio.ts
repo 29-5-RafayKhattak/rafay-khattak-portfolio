@@ -462,7 +462,16 @@ type Site = {
 
 export const site: Site = {
   name: person.fullName,
-  description: person.intro,
+  /*
+   * The search description, which is a different job from the hero sentence it
+   * used to reuse. `person.intro` says what he builds; a result in a search
+   * page also has to say who he is and what this page is, because it is read
+   * with no surrounding context. Written once, plainly, and deliberately not
+   * padded with the discipline names — those are carried by `knowsAbout` in
+   * the structured data, where they belong.
+   */
+  description:
+    "Rafay Khattak is an AI engineer and software developer working across intelligent systems, data science and full-stack products. Selected work and case studies.",
   builtBy: "Designed & Built by Rafay Khattak",
   url: SITE_ORIGIN,
 };
