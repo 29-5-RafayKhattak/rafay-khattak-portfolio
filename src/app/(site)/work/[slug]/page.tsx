@@ -51,13 +51,29 @@ export async function generateMetadata({
   const description =
     project.caseStudy.seoDescription ?? project.caseStudy.statement;
 
+  const ogTitle = `${project.name} — ${settings.person.fullName}`;
+
   return {
     title: project.name,
     description,
+    /*
+     * Relative, resolved against the `metadataBase` the root layout sets from
+     * the one committed origin. Written this way so a case study never names
+     * the domain — the alternative is six absolute URLs that all have to be
+     * found and changed the day the site moves.
+     */
+    alternates: { canonical: `/work/${slug}` },
     openGraph: {
-      title: `${project.name} — ${settings.person.fullName}`,
+      title: ogTitle,
       description,
       type: "article",
+      url: `/work/${slug}`,
+      siteName: settings.person.fullName,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: ogTitle,
+      description,
     },
   };
 }

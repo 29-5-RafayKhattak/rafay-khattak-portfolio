@@ -443,21 +443,17 @@ type Site = {
   description: string;
   builtBy: string;
   /**
-   * Production origin — the ONE value to set at launch.
+   * Production origin — the ONE value the whole site derives absolute URLs
+   * from. Origin only: scheme and host, no trailing slash and no path.
    *
-   * `app/layout.tsx` derives `metadataBase` from this, so filling it in turns
-   * absolute Open Graph and canonical URLs on across every route at once, with
-   * no other edit anywhere.
+   * `metadataBase`, every canonical, every Open Graph and Twitter URL, the
+   * sitemap entries and the robots sitemap reference all resolve against this.
+   * Nothing else anywhere names the domain, so moving the site is this line.
    *
-   * It is null rather than a guessed domain on purpose. A placeholder here
-   * would not stay inert: Next would resolve every social and canonical URL
-   * against a host that is not serving the site, which search engines and link
-   * previews would follow. Emitting no absolute URL is a limitation; emitting a
-   * confidently wrong one is a defect.
-   *
-   * At launch, set this to the origin with no trailing path — the Railway
-   * domain ("https://<service>.up.railway.app") or the custom domain once DNS
-   * points at it.
+   * It stays typed as nullable because the CMS may still return an empty
+   * value, and the mapping layer treats the value here as the default rather
+   * than as a fallback of last resort — see getSettings(). A wrong absolute
+   * URL is worse than none: search engines and link previews follow it.
    */
   url: string | null;
 };
@@ -466,5 +462,5 @@ export const site: Site = {
   name: person.fullName,
   description: person.intro,
   builtBy: "Designed & Built by Rafay Khattak",
-  url: null,
+  url: "https://rafayktk.com",
 };

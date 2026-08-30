@@ -3,6 +3,7 @@ import { unstable_cache } from "next/cache";
 import { getPayload } from "payload";
 import config from "@payload-config";
 
+import { site as siteDefaults } from "@/data/portfolio";
 import type { EducationStage, Experience, SocialLink, Stat } from "@/data/portfolio";
 import type { Project } from "@/data/projects";
 import type { About, Contact, SiteSettings } from "@/lib/cms/content";
@@ -223,7 +224,16 @@ export const getSettings = cached(
       site: {
         description: s.site.description,
         builtBy: s.site.builtBy ?? "",
-        url: s.site.url || null,
+        /*
+         * The committed origin is the default, not a last resort. The seed
+         * refuses to overwrite a populated database — which is what protects
+         * edits made in the admin — so a domain set only in `src/data` would
+         * never reach a live install, and every canonical and Open Graph URL
+         * would stay relative in the one environment that needs them absolute.
+         * The CMS field is left as an override for the day the domain moves
+         * before a deploy can follow it.
+         */
+        url: s.site.url || siteDefaults.url,
       },
       sectionLabels: s.sectionLabels,
       horizontalWords: unlist(s.horizontalWords),

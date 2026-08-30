@@ -27,26 +27,45 @@ const geistMono = Geist_Mono({
  * strapline or the production origin in the admin reaches the document head
  * without a redeploy.
  *
- * `metadataBase` still comes from one value — `site.url` in Settings. While
- * that is empty it stays undefined and Next emits relative URLs, which is the
- * behaviour the site has today. A domain that is not serving the site would be
- * worse than none: crawlers and link previews follow absolute URLs.
+ * ONE ORIGIN, RESOLVED ONCE
+ * `metadataBase` is the only place a domain is read, and every URL below is
+ * written relative to it — "/" here, "/work/<slug>" on a case study. Next
+ * resolves them against the base when it renders the head, so the domain
+ * appears in exactly one expression in the codebase and moving the site is a
+ * single edit in `src/data/portfolio.ts`.
  */
 export async function generateMetadata(): Promise<Metadata> {
   const { person, site } = await getSettings();
 
+  const title = `${person.fullName} — ${person.titleShort}`;
+
   return {
     metadataBase: site.url ? new URL(site.url) : undefined,
     title: {
-      default: `${person.fullName} — ${person.titleShort}`,
+      default: title,
       template: `%s — ${person.fullName}`,
     },
     description: site.description,
     authors: [{ name: person.fullName }],
+    // Relative, and deliberately so: resolved against metadataBase above.
+    alternates: { canonical: "/" },
     openGraph: {
-      title: `${person.fullName} — ${person.titleShort}`,
+      title,
       description: site.description,
       type: "website",
+      url: "/",
+      siteName: person.fullName,
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: site.description,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, "max-image-preview": "large" },
     },
   };
 }
