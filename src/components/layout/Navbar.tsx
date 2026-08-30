@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -196,14 +197,22 @@ export function Navbar() {
             style={{ paddingBlock: compact ? "0.75rem" : "1.4rem" }}
           >
             {/* Left — availability -------------------------------------- */}
+            {/*
+              The availability line only appears from `xl`. The link row is
+              centred on the viewport while this sits in the flow, so between
+              `lg` — where the links first appear — and roughly 1150px the two
+              close to a six-pixel gap and read as one run of text. Below `xl`
+              the monogram takes the slot instead: it is short enough that the
+              centred row can never reach it.
+            */}
             <div className="flex items-center">
-              <div className="hidden sm:block">
+              <div className="hidden xl:block">
                 <AvailabilityBadge night={night} />
               </div>
               <a
                 href={onHome ? "#home" : "/"}
                 onClick={go("#home")}
-                className="text-[0.9375rem] font-semibold tracking-[-0.02em] sm:hidden"
+                className="text-[0.9375rem] font-semibold tracking-[-0.02em] xl:hidden"
                 style={{ color: swatch.ink, transition: COLOR_FADE }}
               >
                 RK
@@ -212,7 +221,7 @@ export function Navbar() {
             </div>
 
             {/* Centre — links ------------------------------------------- */}
-            <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex">
+            <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-0.5 lg:flex">
               {navigation.map((item) => {
                 const id = item.href.slice(1);
                 const isActive = activeId === id;
@@ -222,7 +231,7 @@ export function Navbar() {
                       href={item.href}
                       onClick={go(item.href)}
                       aria-current={isActive ? "true" : undefined}
-                      className="group relative block px-3.5 py-2 text-[0.875rem] font-medium"
+                      className="group relative block px-3 py-2 text-[0.8125rem] font-medium tracking-[-0.005em]"
                     >
                       <span
                         className="transition-colors duration-300 group-hover:!text-(--hover-ink)"
@@ -240,8 +249,8 @@ export function Navbar() {
                       <span
                         aria-hidden="true"
                         className={[
-                          "absolute bottom-1 left-3.5 h-px transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                          "w-[calc(100%-1.75rem)] origin-left",
+                          "absolute bottom-1 left-3 h-px transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                          "w-[calc(100%-1.5rem)] origin-left",
                           isActive
                             ? "scale-x-100"
                             : "scale-x-0 group-hover:scale-x-100",
@@ -269,15 +278,16 @@ export function Navbar() {
                   transition: `${COLOR_FADE}, padding 500ms cubic-bezier(0.16,1,0.3,1)`,
                 }}
               >
-                <span className="text-[0.875rem] font-medium whitespace-nowrap">
+                <span className="text-[0.8125rem] font-medium tracking-[-0.005em] whitespace-nowrap">
                   Let&rsquo;s Talk
                 </span>
-                <span
+                {/* The glyph ↗ sits off-baseline and renders differently per
+                    font; the icon matches every other arrow on the site. */}
+                <ArrowUpRight
+                  className="h-[0.95rem] w-[0.95rem] shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[3px] group-hover:-translate-y-[3px]"
+                  strokeWidth={2}
                   aria-hidden="true"
-                  className="inline-block transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[3px] group-hover:-translate-y-[3px]"
-                >
-                  ↗
-                </span>
+                />
               </a>
 
               <button
