@@ -227,7 +227,17 @@ export function Hero({
         {/* ---------------------------------------------------------------
             TOP — role line, clear of the fixed navigation.
         --------------------------------------------------------------- */}
-        <div className="gutter relative z-40 flex shrink-0 items-baseline justify-between pt-[clamp(5rem,10vh,6.75rem)]">
+        {/*
+          The floor was a flat 5rem, which is right under a 100px-tall bar on a
+          normal screen and a quarter of the whole viewport on a landscape
+          phone — where it pushed the composite down into the introduction.
+          Lowering only the floor lets the 10vh term keep control everywhere it
+          already had it: at 812px tall this still resolves to the same 81px it
+          did before, and only genuinely short viewports tighten. The inset is
+          added on top so the role line clears the sensor housing now that the
+          document paints under it.
+        */}
+        <div className="gutter relative z-40 flex shrink-0 items-baseline justify-between pt-[calc(clamp(3.25rem,10vh,6.75rem)+var(--safe-top))]">
           <motion.div variants={heroRole} initial="hidden" animate="show">
             <p className="hero-role eyebrow text-[var(--color-muted)]">
               {person.title}
@@ -360,7 +370,7 @@ export function Hero({
         {/* ---------------------------------------------------------------
             BOTTOM — introduction, CTAs, scroll indicator.
         --------------------------------------------------------------- */}
-        <div className="gutter relative z-40 shrink-0 pb-[clamp(1.25rem,3.5vh,2.5rem)]">
+        <div className="gutter relative z-40 shrink-0 pb-[calc(clamp(1.25rem,3.5vh,2.5rem)+var(--safe-bottom))]">
           <div className="hero-supporting flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-10">
             <div className="max-w-[30rem]">
               <motion.p

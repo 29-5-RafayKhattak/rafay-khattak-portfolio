@@ -53,6 +53,15 @@ export async function generateMetadata(): Promise<Metadata> {
 export const viewport: Viewport = {
   themeColor: "#edece9",
   colorScheme: "light",
+  /*
+   * The shell runs edge to edge below 640px, so on a notched phone the
+   * default (`auto`) leaves the page inset inside letterbox bars — the dark
+   * rooms stop short of the screen edge and read as a panel rather than a
+   * full-bleed surface. `cover` paints to the physical edges; every element
+   * that actually sits on one takes its clearance back from --safe-top /
+   * --safe-bottom in globals.css, which are 0px on any device without insets.
+   */
+  viewportFit: "cover",
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {

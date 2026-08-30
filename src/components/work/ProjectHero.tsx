@@ -98,7 +98,7 @@ export function ProjectHero({ project }: { project: Project }) {
         <Link
           href="/#work"
           data-cursor="arrow"
-          className="group inline-flex items-center gap-2.5 text-[0.875rem] text-[var(--color-muted)] transition-colors duration-300 hover:text-[var(--color-ink)]"
+          className="tap group inline-flex items-center gap-2.5 text-[0.875rem] text-[var(--color-muted)] transition-colors duration-300 hover:text-[var(--color-ink)]"
         >
           <ArrowLeft
             className="h-4 w-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-x-1"

@@ -79,7 +79,12 @@ export function ProjectDisciplines({
     <div ref={sectionRef}>
       <p className="eyebrow mb-6 text-[var(--color-muted)]">Covers</p>
 
-      <div className="-mx-[clamp(1.25rem,4vw,4.5rem)] overflow-x-auto px-[clamp(1.25rem,4vw,4.5rem)] pb-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:mx-0 sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
+      {/* Pulled out to the shell edge and padded back in by the same amount, so
+          the strip scrolls edge to edge while its first label still lines up
+          with the column above. Both halves read `--gutter-x` rather than
+          repeating its value: the token now widens for a notch, and a literal
+          copy would drift out of alignment in landscape. */}
+      <div className="-mx-[var(--gutter-x)] overflow-x-auto px-[var(--gutter-x)] pb-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:mx-0 sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
         <div className="relative flex min-w-[22rem] gap-0">
           {/* Rule --------------------------------------------------- */}
           <span

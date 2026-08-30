@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 
 import type { ArchitectureLayer } from "@/data/projects";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useArmedReveal } from "@/components/education/useArmedReveal";
 import { gsap, useScrollScene } from "@/hooks/useScrollScene";
 
 /**
@@ -38,13 +38,6 @@ export function ArchitectureDiagram({
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
-  /*
-   * The layer-by-layer walk only exists where the diagram is pinned. Below
-   * `md` — and under reduced motion — nothing drives `active`, so highlighting
-   * layer 0 would single one out for no reason. There, every layer is simply
-   * present.
-   */
-  const canPin = useMediaQuery("(min-width: 768px)");
 
   const reducedMotion = useScrollScene(sectionRef, (scope) => {
     const mm = gsap.matchMedia();
@@ -74,8 +67,53 @@ export function ArchitectureDiagram({
       });
     });
 
+    /*
+     * Below `md` the same walk runs unpinned. Dropping it entirely was the
+     * easy option and the wrong one: the layers lighting from the browser
+     * down to the database is the argument the diagram makes, and a phone
+     * that renders all of them lit at once is left with a static list of
+     * boxes. So the diagram scrolls normally — no pin, nothing held still —
+     * and its own passage through the viewport drives the same `active`
+     * index the pinned version does.
+     *
+     * The range ends at `bottom 60%` rather than at the foot of the range,
+     * so the last layer is reached while the diagram is still comfortably on
+     * screen instead of as it leaves.
+     */
+    mm.add("(max-width: 767px) and (prefers-reduced-motion: no-preference)", () => {
+      const steps = stack.length;
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: scope,
+          start: "top 82%",
+          end: "bottom 60%",
+          scrub: 0.5,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const index = Math.min(
+              steps - 1,
+              Math.floor(self.progress * steps * 1.08),
+            );
+            setActive((prev) => (prev === index ? prev : index));
+          },
+        },
+      });
+    });
+
     return () => mm.revert();
   });
+
+  /*
+   * The walk is armed in a layout effect rather than assumed, so the server
+   * renders every layer in its lit state and anything that stops the
+   * animation layer running — reduced motion, a hydration failure, a tab that
+   * measured a zero viewport — leaves a diagram that is simply all readable
+   * rather than one stuck with its lower layers dimmed. Same reasoning as the
+   * education reveals; see useArmedReveal.
+   */
+  const armed = useArmedReveal(!reducedMotion);
+  const walking = armed && !reducedMotion;
 
   return (
     <div
@@ -146,9 +184,8 @@ export function ArchitectureDiagram({
             )}
 
             {stack.map((layer, i) => {
-              const walkthrough = canPin && !reducedMotion;
-              const isActive = !walkthrough || active >= i;
-              const isCurrent = walkthrough && active === i;
+              const isActive = !walking || active >= i;
+              const isCurrent = walking && active === i;
 
               return (
                 <li key={layer.id}>
@@ -218,7 +255,7 @@ export function ArchitectureDiagram({
                         className="block h-5 w-px transition-colors duration-[600ms]"
                         style={{
                           backgroundColor:
-                            !canPin || reducedMotion || active > i
+                            !walking || active > i
                               ? "var(--p-accent, var(--color-accent))"
                               : "var(--color-line-strong)",
                         }}

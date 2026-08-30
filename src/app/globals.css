@@ -50,8 +50,32 @@
 
 :root {
   /* Fluid type scale ----------------------------------------------------- */
-  /* Shared so full-bleed layers can measure back out to the shell edge. */
-  --gutter-x: clamp(1.25rem, 4vw, 4.5rem);
+  /*
+   * Shared so full-bleed layers can measure back out to the shell edge.
+   *
+   * SAFE AREAS
+   * The shell runs edge to edge below 640px, so in landscape on a notched
+   * phone the gutter is the only thing between body text and the sensor
+   * housing. `max()` widens it to clear the inset where there is one and
+   * resolves to the plain value everywhere else — no media query, and no
+   * change at all on a device that reports 0.
+   */
+  --gutter-x: max(
+    clamp(1.25rem, 4vw, 4.5rem),
+    env(safe-area-inset-left, 0px),
+    env(safe-area-inset-right, 0px)
+  );
+
+  /*
+   * Safe areas, named once. The document opts into `viewport-fit=cover` (see
+   * the viewport export in the site layout) so the page paints under the
+   * notch and the home indicator rather than leaving letterboxed bars either
+   * side of an edge-to-edge shell — which is what these give back to any
+   * element that actually sits on an edge. Both resolve to 0px on every
+   * device without insets, so nothing else moves.
+   */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 
   --step-eyebrow: clamp(0.625rem, 0.58rem + 0.2vw, 0.75rem);
   --step-body: clamp(0.9375rem, 0.9rem + 0.25vw, 1.0625rem);
@@ -90,9 +114,20 @@
 
 @media (max-width: 640px) {
   :root {
-    /* KHATTAK is 7 characters wide; 21vw is the largest size that still
-       clears the gutters on a 375px screen. */
-    --name-size: 21vw;
+    /*
+     * KHATTAK is 7 characters wide; 21vw is the largest size that still
+     * clears the gutters on a 375px screen.
+     *
+     * The svh term is what stops the composite running into the copy beneath
+     * it on a short phone. It is deliberately loose enough that a normal
+     * handset never reaches it — 10svh only wins below roughly 790px of
+     * viewport, so an iPhone 13/14/15 and every Pro Max size render at
+     * exactly the width-derived size they did before, and only genuinely
+     * short screens (SE, and anything with the browser chrome expanded)
+     * scale down. Everything below is a multiple of this, so one term
+     * rescales the whole arrangement instead of each part being re-tuned.
+     */
+    --name-size: min(21vw, 10svh);
     /* A phone has proportionally more height than the name needs, so the
        portrait is allowed to grow past its desktop ratio. */
     --portrait-height: calc(var(--name-size) * 3.6);
@@ -101,6 +136,28 @@
     --shell-inset: 0px;
     --shell-radius: 0px;
     --stage-height: 100svh;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SHORT AND WIDE — landscape phones, and a desktop window dragged short.
+   The name is sized off width everywhere else, which on a 390px-tall
+   landscape phone produces a composite taller than the room between the role
+   line and the introduction. The ratios are untouched: only the term the
+   composite is derived from becomes height-bound, so the arrangement is the
+   same one, smaller. Above 620px of height nothing here applies, so every
+   tested desktop and tablet height is unaffected.
+   -------------------------------------------------------------------------- */
+@media (min-width: 641px) and (max-height: 620px) {
+  :root {
+    /*
+     * 12svh, not more: in landscape the introduction sits in a row across the
+     * foot of the stage rather than in a column under the composite, so the
+     * portrait has to clear the *top* of that row and not merely the bottom
+     * of the frame. At 390px of height that puts the ceiling here rather than
+     * at the 15svh the vertical arrangement would allow.
+     */
+    --name-size: min(19vw, 12svh);
   }
 }
 
@@ -353,6 +410,50 @@ html.lenis body {
 }
 
 /* ==========================================================================
+   TOUCH TARGETS
+   A finger needs about 44px of reachable target. Most controls here are set
+   in editorial type that is shorter than that — a 13px nav link is 31px tall
+   including its padding, and a social pill 37px.
+
+   Inflating them to 44px of real box would coarsen the design on every
+   device, and only touch devices have the problem. So the *ink* is left
+   exactly as it is and the hit area alone is grown, with a transparent
+   pseudo-element centred on the control. Layout is untouched, because the
+   pseudo-element is absolutely positioned.
+
+   Scoped to `pointer: coarse` so a mouse never gets the enlarged region —
+   which would otherwise let two stacked links overlap each other's hover.
+   ========================================================================== */
+@media (pointer: coarse) {
+  .tap {
+    position: relative;
+  }
+
+  .tap::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    translate: 0 -50%;
+    height: 100%;
+    min-height: 44px;
+    /* Purely a hit area — it must never paint, and must not become the
+       event target for anything that reads `event.target`. */
+    pointer-events: auto;
+  }
+
+  /* Where a control is narrow as well as short — an icon button, a monogram —
+     the region has to grow on both axes. */
+  .tap-square::after {
+    inset-inline: auto;
+    left: 50%;
+    translate: -50% -50%;
+    width: 100%;
+    min-width: 44px;
+  }
+}
+
+/* ==========================================================================
    REDUCED MOTION
    All scroll-linked choreography is disabled in JS; this covers CSS.
    ========================================================================== */
@@ -574,6 +675,57 @@ html.lenis body {
   background-color: var(--p-accent, var(--color-ink));
   border-color: var(--p-accent, var(--color-ink));
   color: #ffffff;
+}
+
+/* ==========================================================================
+   SELECTED WORK — FITTING A SLIDE TO A PHONE
+
+   The Work scene is pinned: the stage is exactly one 100svh frame and the
+   slide is absolutely positioned inside it, between the section label and the
+   progress rail. Nothing can spill, because the stage clips — so anything
+   taller than the frame is not "a bit tight", it is content the reader can
+   never reach. On a 375×667 handset the stacked column ran 149px past the
+   frame and took the case-study CTA with it: the primary action of the most
+   important section on the site, clipped off the bottom edge.
+
+   The desktop layout is not the problem — above `sm` the visual and the copy
+   sit side by side and use the width instead of a height the stage does not
+   have. This block is only about the single-column form.
+
+   Two tiers rather than one, because a 932px-tall Pro Max and a 667px SE need
+   different amounts given back. The first trims what is comfortable to trim;
+   the second is for screens where the copy genuinely cannot all be shown, and
+   shortens the description — the one element here whose full text is always
+   one tap away on the case study the CTA links to. Everything else, including
+   that CTA, stays on screen at every size.
+   ========================================================================== */
+
+@media (max-width: 639px) {
+  .work-desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 639px) and (max-height: 740px) {
+  /* The visual is bounded by height, not width, so it narrows instead of
+     cropping — the aspect ratio is left intact at every size. */
+  .work-visual {
+    max-width: calc(20svh * 1.6);
+  }
+
+  .work-desc {
+    -webkit-line-clamp: 3;
+  }
+
+  /* Four tags wrap to two rows and cost 38px that the CTA needs. One row,
+     clipped — the stack is stated in full on the case study. */
+  .work-tags {
+    max-height: 2.125rem;
+    overflow: hidden;
+  }
 }
 
 /* ==========================================================================

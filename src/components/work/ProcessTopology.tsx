@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 
-import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useArmedReveal } from "@/components/education/useArmedReveal";
 import { gsap, useScrollScene } from "@/hooks/useScrollScene";
 
 /**
@@ -29,7 +29,6 @@ export function ProcessTopology({
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
-  const canPin = useMediaQuery("(min-width: 768px)");
 
   const reducedMotion = useScrollScene(sectionRef, (scope) => {
     const mm = gsap.matchMedia();
@@ -53,12 +52,42 @@ export function ProcessTopology({
       });
     });
 
+    /*
+     * The unpinned form of the same walk, for phones. Where the boundaries
+     * fall is the whole point of this figure, and a static column of eight
+     * identical rows does not make that point — so the run still lights one
+     * step at a time, driven by the section's own passage through the
+     * viewport rather than by holding the reader still.
+     */
+    mm.add("(max-width: 767px) and (prefers-reduced-motion: no-preference)", () => {
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: scope,
+          start: "top 82%",
+          end: "bottom 60%",
+          scrub: 0.5,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const index = Math.min(
+              steps.length - 1,
+              Math.floor(self.progress * steps.length * 1.08),
+            );
+            setActive((prev) => (prev === index ? prev : index));
+          },
+        },
+      });
+    });
+
     return () => mm.revert();
   });
 
-  // Without the pin — on a phone, or under reduced motion — nothing drives the
-  // walk, so every step is simply present rather than one being singled out.
-  const walking = canPin && !reducedMotion;
+  /*
+   * Armed in a layout effect, so the server renders every step reached and a
+   * failure in the animation layer leaves a readable run rather than one
+   * greyed out below the first row. See useArmedReveal.
+   */
+  const armed = useArmedReveal(!reducedMotion);
+  const walking = armed && !reducedMotion;
 
   return (
     <div

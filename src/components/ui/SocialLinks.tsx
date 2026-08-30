@@ -75,7 +75,7 @@ export function SocialLinks({
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
               className={[
-                "group flex items-center gap-2 rounded-full border px-3 py-2 transition-colors duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                "tap group flex items-center gap-2 rounded-full border px-3 py-2.5 transition-colors duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
                 night
                   ? "border-[var(--color-night-line)] bg-white/[0.04] text-[var(--color-night-ink)] hover:border-[var(--color-night-ink)] hover:bg-[var(--color-night-ink)] hover:text-[var(--color-night)]"
                   : "border-[var(--color-line)] bg-[var(--color-white)]/70 text-[var(--color-ink)] hover:border-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-[var(--color-canvas)]",

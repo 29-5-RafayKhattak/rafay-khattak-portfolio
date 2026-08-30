@@ -44,7 +44,7 @@ export function Footer({
       data-tone="night"
       className="on-night relative z-0 bg-[var(--color-night)]"
     >
-      <div className="gutter pb-[clamp(1.75rem,4vh,2.75rem)]">
+      <div className="gutter pb-[calc(clamp(1.75rem,4vh,2.75rem)+var(--safe-bottom))]">
         <div
           className="mb-[clamp(2rem,5vh,3.5rem)] h-px w-full bg-[var(--color-night-line)]"
           aria-hidden="true"
@@ -66,7 +66,7 @@ export function Footer({
                       }
                       scrollTo(item.href, anchorOffset(item.href));
                     }}
-                    className="group relative inline-block py-1 text-[0.9375rem] text-[var(--color-night-muted)] transition-colors duration-300 hover:text-[var(--color-night-ink)]"
+                    className="tap group relative inline-block py-2 text-[0.9375rem] text-[var(--color-night-muted)] transition-colors duration-300 hover:text-[var(--color-night-ink)]"
                   >
                     {item.label}
                     <span

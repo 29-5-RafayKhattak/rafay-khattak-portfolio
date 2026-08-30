@@ -204,8 +204,18 @@ export function Navbar({
           />
           <nav
             aria-label="Primary"
-            className="gutter flex items-center justify-between transition-[padding-block] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-            style={{ paddingBlock: compact ? "0.75rem" : "1.4rem" }}
+            className="gutter flex items-center justify-between transition-[padding] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            /*
+              The bar is fixed at the very top of a shell that runs edge to
+              edge on a phone, so on a notched device its content would sit
+              under the sensor housing. The inset is added to the top padding
+              only — it resolves to 0 everywhere else, so no other viewport
+              moves by a pixel.
+            */
+            style={{
+              paddingTop: `calc(${compact ? "0.75rem" : "1.4rem"} + env(safe-area-inset-top, 0px))`,
+              paddingBottom: compact ? "0.75rem" : "1.4rem",
+            }}
           >
             {/* Left — availability -------------------------------------- */}
             {/*
@@ -223,7 +233,7 @@ export function Navbar({
               <a
                 href={onHome ? "#home" : "/"}
                 onClick={go("#home")}
-                className="text-[0.9375rem] font-semibold tracking-[-0.02em] xl:hidden"
+                className="tap tap-square text-[0.9375rem] font-semibold tracking-[-0.02em] xl:hidden"
                 style={{ color: swatch.ink, transition: COLOR_FADE }}
               >
                 RK
@@ -242,7 +252,7 @@ export function Navbar({
                       href={item.href}
                       onClick={go(item.href)}
                       aria-current={isActive ? "true" : undefined}
-                      className="group relative block px-3 py-2 text-[0.8125rem] font-medium tracking-[-0.005em]"
+                      className="tap group relative block px-3 py-2 text-[0.8125rem] font-medium tracking-[-0.005em]"
                     >
                       <span
                         className="transition-colors duration-300 group-hover:!text-(--hover-ink)"
@@ -307,7 +317,7 @@ export function Navbar({
                 onClick={() => setOpen(true)}
                 aria-label="Open menu"
                 aria-expanded={open}
-                className="flex h-10 w-10 items-center justify-center rounded-full border lg:hidden"
+                className="flex h-11 w-11 items-center justify-center rounded-full border lg:hidden"
                 style={{
                   borderColor: swatch.line,
                   backgroundColor: swatch.surface,
@@ -346,7 +356,20 @@ export function Navbar({
             aria-modal="true"
             aria-label="Site menu"
           >
-            <div className="gutter flex h-full flex-col justify-between py-6">
+            {/*
+              A full-screen panel on a notched phone: the title row would sit
+              under the housing and the availability line under the home
+              indicator, so both edges take their inset. `overflow-y-auto`
+              covers the one case the editorial type cannot fit — a landscape
+              phone, where six 59px items plus the socials exceed 390px.
+            */}
+            <div
+              className="gutter flex h-full flex-col justify-between gap-8 overflow-y-auto py-6"
+              style={{
+                paddingTop: "calc(1.5rem + env(safe-area-inset-top, 0px))",
+                paddingBottom: "calc(1.5rem + env(safe-area-inset-bottom, 0px))",
+              }}
+            >
               <div className="flex items-center justify-between">
                 <span className="eyebrow text-[var(--color-night-muted)]">
                   {person.fullName}
@@ -355,7 +378,7 @@ export function Navbar({
                   type="button"
                   onClick={() => setOpen(false)}
                   aria-label="Close menu"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-night-line)]"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-night-line)]"
                 >
                   <span aria-hidden="true" className="relative block h-4 w-4">
                     <span className="absolute top-1/2 left-0 block h-px w-4 rotate-45 bg-current" />

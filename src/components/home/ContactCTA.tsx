@@ -108,7 +108,7 @@ export function ContactCTA({ contact, label }: { contact: Contact; label: string
             <a
               href={`mailto:${contact.email}`}
               data-cursor="arrow"
-              className="group mt-5 inline-block text-[clamp(1.05rem,2.4vw,1.65rem)] font-medium tracking-[-0.02em] text-[var(--color-night-ink)]"
+              className="tap group mt-5 inline-block text-[clamp(1.05rem,2.4vw,1.65rem)] font-medium tracking-[-0.02em] text-[var(--color-night-ink)]"
             >
               {contact.email}
               <span

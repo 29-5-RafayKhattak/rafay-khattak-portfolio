@@ -215,7 +215,7 @@ export function StatsSequence({ stats, label }: { stats: Stat[]; label: string }
         </div>
 
         {/* Progress rail ----------------------------------------------- */}
-        <div className="gutter flex shrink-0 items-center gap-4 pb-[clamp(2rem,6vh,3.5rem)]">
+        <div className="gutter flex shrink-0 items-center gap-4 pb-[calc(clamp(2rem,6vh,3.5rem)+var(--safe-bottom))]">
           <span className="eyebrow text-[var(--color-night-muted)]">01</span>
           <span
             className="relative h-px flex-1 overflow-hidden bg-[var(--color-night-line)]"

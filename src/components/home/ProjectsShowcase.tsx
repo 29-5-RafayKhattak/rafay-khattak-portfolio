@@ -305,7 +305,7 @@ export function ProjectsShowcase({
           tallest and does not shrink with viewport height — a proportional
           value alone tucks the eyebrow under it on short screens.
         */}
-        <div className="gutter shrink-0 pt-[clamp(6.25rem,9.5vh,7rem)]">
+        <div className="gutter shrink-0 pt-[clamp(5rem,9.5vh,7rem)]">
           <SectionLabel index="03">{label}</SectionLabel>
         </div>
 
@@ -345,7 +345,7 @@ export function ProjectsShowcase({
                         the width rather than a height the stage does not have
                   lg    the index column joins them
               */}
-              <div className="grid w-full items-center gap-x-[clamp(1.25rem,3vw,3rem)] gap-y-6 sm:grid-cols-[minmax(0,1fr)_minmax(0,0.82fr)] lg:grid-cols-[minmax(0,0.26fr)_minmax(0,1.18fr)_minmax(0,0.7fr)] xl:grid-cols-[minmax(0,0.34fr)_minmax(0,1.12fr)_minmax(0,0.72fr)]">
+              <div className="grid w-full items-center gap-x-[clamp(1.25rem,3vw,3rem)] gap-y-[clamp(0.75rem,2.5vh,1.5rem)] sm:grid-cols-[minmax(0,1fr)_minmax(0,0.82fr)] lg:grid-cols-[minmax(0,0.26fr)_minmax(0,1.18fr)_minmax(0,0.7fr)] xl:grid-cols-[minmax(0,0.34fr)_minmax(0,1.12fr)_minmax(0,0.72fr)]">
                 {/* Index — dropped on narrow screens where it would crowd
                     the visual out of the frame. */}
                 {/*
@@ -412,7 +412,7 @@ export function ProjectsShowcase({
                   of cropping the visual, and on a normal phone the cap exceeds
                   the available width and never engages.
                 */}
-                <div className="project-visual group/visual mx-auto aspect-[16/10] w-full max-w-[calc(27svh*1.6)] overflow-hidden rounded-[clamp(0.875rem,1.6vw,1.5rem)] border border-[var(--color-line)] shadow-[0_28px_60px_-38px_rgba(17,17,17,0.45)] gpu sm:max-w-none">
+                <div className="work-visual project-visual group/visual mx-auto aspect-[16/10] w-full max-w-[calc(22svh*1.6)] overflow-hidden rounded-[clamp(0.875rem,1.6vw,1.5rem)] border border-[var(--color-line)] shadow-[0_28px_60px_-38px_rgba(17,17,17,0.45)] gpu sm:max-w-none">
                   {project.caseStudy ? (
                     <Link
                       href={`/work/${project.slug}`}
@@ -438,7 +438,7 @@ export function ProjectsShowcase({
                       {project.name}
                     </h3>
                   </div>
-                  <div className="mt-3.5 overflow-hidden">
+                  <div className="mt-[clamp(0.5rem,1.6vh,0.875rem)] overflow-hidden">
                     <p className="project-copy-line eyebrow gpu">
                       {/* `warm`, not `accent` — see the LABELLED FACT note in
                           globals.css. At eyebrow size the deep tone is ink,
@@ -472,7 +472,7 @@ export function ProjectsShowcase({
                     )?.value;
                     if (!status) return null;
                     return (
-                      <div className="mt-4 overflow-hidden">
+                      <div className="mt-[clamp(0.625rem,2vh,1rem)] overflow-hidden">
                         <p className="project-copy-line gpu flex items-center gap-2.5 text-[0.8125rem] text-[var(--color-muted)]">
                           <span
                             aria-hidden="true"
@@ -487,13 +487,13 @@ export function ProjectsShowcase({
                       </div>
                     );
                   })()}
-                  <div className="mt-6 overflow-hidden">
-                    <p className="project-copy-line text-[length:var(--step-body)] leading-[1.6] text-[var(--color-muted)] gpu">
+                  <div className="mt-[clamp(0.875rem,3vh,1.5rem)] overflow-hidden">
+                    <p className="work-desc project-copy-line text-[length:var(--step-body)] leading-[1.6] text-[var(--color-muted)] gpu">
                       {project.description}
                     </p>
                   </div>
-                  <div className="mt-5 overflow-hidden">
-                    <ul className="project-copy-line flex flex-wrap gap-2 gpu">
+                  <div className="mt-[clamp(0.75rem,2.5vh,1.25rem)] overflow-hidden">
+                    <ul className="work-tags project-copy-line flex flex-wrap gap-2 gpu">
                       {project.tags.map((tag) => (
                         <li key={tag}>
                           <span className="tech-pill">{tag}</span>
@@ -504,7 +504,7 @@ export function ProjectsShowcase({
 
                   {/* Only projects with a published case study get a CTA. */}
                   {project.caseStudy && (
-                    <div className="mt-6 overflow-hidden">
+                    <div className="mt-[clamp(0.875rem,3vh,1.5rem)] overflow-hidden">
                       <div className="project-copy-line gpu">
                         <Link
                           href={`/work/${project.slug}`}
@@ -532,7 +532,7 @@ export function ProjectsShowcase({
         </div>
 
         {/* Progress rail ----------------------------------------------- */}
-        <div className="gutter flex shrink-0 items-center gap-4 pb-[clamp(1.75rem,5vh,3rem)]">
+        <div className="gutter flex shrink-0 items-center gap-4 pb-[calc(clamp(1.75rem,5vh,3rem)+var(--safe-bottom))]">
           <span className="eyebrow text-[var(--color-muted)]">01</span>
           <span
             className="relative h-px flex-1 overflow-hidden bg-[var(--color-line)]"
