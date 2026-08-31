@@ -93,7 +93,7 @@ export const socials: SocialLink[] = [
     label: "LinkedIn",
     // Stored without the trailing slash, which is the form LinkedIn's own
     // redirect canonicalises to.
-    href: "https://www.linkedin.com/in/muhammad-rafay-mir-khattak-a709ab277",
+    href: "https://www.linkedin.com/in/rafay-khattak-a709ab277",
     icon: "linkedin",
   },
   { label: "Email", href: "mailto:rafeh.ktk@gmail.com", icon: "mail" },
