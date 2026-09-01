@@ -1928,10 +1928,6 @@ export interface Contact {
   id: number;
   email: string;
   /**
-   * Optional. Shown beside the email in the contact section. Store it in the form it should be read in — the tel: link strips the spacing itself.
-   */
-  phone?: string | null;
-  /**
    * One entry per display line.
    */
   headline: {
@@ -2041,7 +2037,6 @@ export interface AboutSelect<T extends boolean = true> {
  */
 export interface ContactSelect<T extends boolean = true> {
   email?: T;
-  phone?: T;
   headline?:
     | T
     | {

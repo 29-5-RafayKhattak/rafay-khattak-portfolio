@@ -68,8 +68,6 @@ export function personGraph({
   socials,
   alumniOf,
   portraitUrl,
-  email,
-  telephone,
 }: {
   person: SiteSettings["person"];
   site: SiteSettings["site"];
@@ -77,9 +75,6 @@ export function personGraph({
   /** Institution names the education data actually supplies. */
   alumniOf: string[];
   portraitUrl?: string;
-  /** The same two contact points the contact section publishes, or nothing. */
-  email?: string;
-  telephone?: string;
 }) {
   const personId = `${SITE_ORIGIN}/#person`;
   const siteId = `${SITE_ORIGIN}/#website`;
@@ -108,14 +103,6 @@ export function personGraph({
             }
           : {}),
         ...(portraitUrl ? { image: portraitUrl } : {}),
-        /*
-         * Only what the page already shows. These are published in the contact
-         * section in plain sight, so restating them here tells a crawler
-         * nothing a reader cannot see — which is the line this graph is written
-         * to stay on.
-         */
-        ...(email ? { email } : {}),
-        ...(telephone ? { telephone } : {}),
         knowsAbout: [
           "AI Engineering",
           "Software Engineering",

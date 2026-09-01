@@ -49,8 +49,6 @@ export const portrait = {
 
 export const contact = {
   email: "rafeh.ktk@gmail.com",
-  /* Written the way it should be read. The `tel:` link strips the spacing. */
-  phone: "+92 3361123334",
   headline: ["LET'S BUILD", "SOMETHING", "INTELLIGENT."],
   subline: "Have a project, idea or opportunity?",
   sublineAccent: "Let's talk.",
