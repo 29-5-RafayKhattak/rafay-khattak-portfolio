@@ -196,6 +196,7 @@ const groups = (rows?: readonly { title: string; items: string[] }[]) =>
     slug: "contact",
     data: {
       email: contact.email,
+      phone: contact.phone,
       headline: list(contact.headline),
       subline: contact.subline,
       sublineAccent: contact.sublineAccent,

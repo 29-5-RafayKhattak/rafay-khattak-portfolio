@@ -3,7 +3,7 @@ import { unstable_cache } from "next/cache";
 import { getPayload } from "payload";
 import config from "@payload-config";
 
-import { site as siteDefaults } from "@/data/portfolio";
+import { contact as contactDefaults, site as siteDefaults } from "@/data/portfolio";
 import type { EducationStage, Experience, SocialLink, Stat } from "@/data/portfolio";
 import type { Project } from "@/data/projects";
 import type { About, Contact, SiteSettings } from "@/lib/cms/content";
@@ -265,6 +265,13 @@ export const getContact = cached(
     const c = await payload.findGlobal({ slug: "contact", overrideAccess: false });
     return {
       email: c.email,
+      /*
+       * The committed number is the default, for the same reason the origin is:
+       * the seed will not write into a populated database, so a value that
+       * lives only in `src/data` never reaches a live install. The CMS field
+       * stays an override for whenever the number changes.
+       */
+      phone: c.phone || contactDefaults.phone,
       headline: unlist(c.headline),
       subline: c.subline,
       sublineAccent: c.sublineAccent,

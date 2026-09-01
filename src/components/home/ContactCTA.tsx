@@ -23,6 +23,12 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
  *   Framer Motion      — the supporting copy and CTA, which fire once on entry.
  * -----------------------------------------------------------------------------
  */
+/** Both contact links are the same control; only the scheme differs. */
+const CONTACT_LINK =
+  "tap group inline-block text-[clamp(1.05rem,2.4vw,1.65rem)] font-medium tracking-[-0.02em] text-[var(--color-night-ink)]";
+const CONTACT_RULE =
+  "mt-1 block h-px w-full origin-left scale-x-100 bg-[var(--color-night-line)] transition-colors duration-300 group-hover:bg-[var(--color-accent)]";
+
 export function ContactCTA({ contact, label }: { contact: Contact; label: string }) {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -105,17 +111,34 @@ export function ContactCTA({ contact, label }: { contact: Contact; label: string
               </span>
             </p>
 
-            <a
-              href={`mailto:${contact.email}`}
-              data-cursor="arrow"
-              className="tap group mt-5 inline-block text-[clamp(1.05rem,2.4vw,1.65rem)] font-medium tracking-[-0.02em] text-[var(--color-night-ink)]"
-            >
-              {contact.email}
-              <span
-                aria-hidden="true"
-                className="mt-1 block h-px w-full origin-left scale-x-100 bg-[var(--color-night-line)] transition-colors duration-300 group-hover:bg-[var(--color-accent)]"
-              />
-            </a>
+            {/*
+              Two ways to reach him, set identically because neither is the
+              lesser option. `items-start` keeps each rule the width of its own
+              text rather than stretching both to the column — the underline is
+              part of the link, not a divider.
+            */}
+            <div className="mt-5 flex flex-col items-start gap-[clamp(0.75rem,2vh,1.125rem)]">
+              <a
+                href={`mailto:${contact.email}`}
+                data-cursor="arrow"
+                className={CONTACT_LINK}
+              >
+                {contact.email}
+                <span aria-hidden="true" className={CONTACT_RULE} />
+              </a>
+
+              {contact.phone && (
+                <a
+                  /* Spacing is for reading; a tel: URI must not contain it. */
+                  href={`tel:${contact.phone.replace(/\s+/g, "")}`}
+                  data-cursor="arrow"
+                  className={CONTACT_LINK}
+                >
+                  {contact.phone}
+                  <span aria-hidden="true" className={CONTACT_RULE} />
+                </a>
+              )}
+            </div>
           </motion.div>
 
           <motion.div variants={fadeUp}>

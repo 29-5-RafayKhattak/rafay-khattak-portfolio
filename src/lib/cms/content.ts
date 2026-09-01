@@ -12,6 +12,8 @@ export type About = {
 
 export type Contact = {
   email: string;
+  /** May be empty — the contact block renders it only when there is one. */
+  phone: string;
   headline: string[];
   subline: string;
   sublineAccent: string;

@@ -11,6 +11,14 @@ export const Contact: GlobalConfig = {
   fields: [
     { name: "email", type: "email", required: true },
     {
+      name: "phone",
+      type: "text",
+      admin: {
+        description:
+          "Optional. Shown beside the email in the contact section. Store it in the form it should be read in — the tel: link strips the spacing itself.",
+      },
+    },
+    {
       name: "headline",
       type: "array",
       required: true,
