@@ -105,6 +105,9 @@ export default async function Home() {
         ? portrait
         : `${SITE_ORIGIN}${portrait}`
       : undefined,
+    email: contact.email,
+    // Digits only for the machine-readable copy; the visible one keeps spacing.
+    telephone: contact.phone ? contact.phone.replace(/\s+/g, "") : undefined,
   });
 
   return (

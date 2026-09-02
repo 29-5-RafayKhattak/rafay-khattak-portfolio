@@ -3,7 +3,10 @@ import { unstable_cache } from "next/cache";
 import { getPayload } from "payload";
 import config from "@payload-config";
 
-import { site as siteDefaults } from "@/data/portfolio";
+import {
+  contact as contactDefaults,
+  site as siteDefaults,
+} from "@/data/portfolio";
 import type { EducationStage, Experience, SocialLink, Stat } from "@/data/portfolio";
 import type { Project } from "@/data/projects";
 import type { About, Contact, SiteSettings } from "@/lib/cms/content";
@@ -265,6 +268,21 @@ export const getContact = cached(
     const c = await payload.findGlobal({ slug: "contact", overrideAccess: false });
     return {
       email: c.email,
+      /*
+       * Code, not the CMS, and deliberately so.
+       *
+       * Making this a Payload field means Payload selects `contact.phone` on
+       * every read, which is fine once the column exists and a 500 on every
+       * database-backed page until it does. That is exactly what happened when
+       * it was tried: the schema migration did not take effect on the deploy
+       * that shipped the field, and the site went down. Why it did not run is
+       * still unexplained — the pre-deploy command is configured and an
+       * earlier data migration did apply — so until that is understood, a
+       * number that changes once every few years is not worth betting the
+       * whole site on. It reads from `src/data/portfolio.ts` and touches no
+       * column, so there is nothing here that can fail.
+       */
+      phone: contactDefaults.phone,
       headline: unlist(c.headline),
       subline: c.subline,
       sublineAccent: c.sublineAccent,
