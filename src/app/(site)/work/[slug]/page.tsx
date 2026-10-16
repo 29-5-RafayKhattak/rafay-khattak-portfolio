@@ -106,7 +106,7 @@ export default async function WorkCaseStudyPage({
       {project.slug === whatsappProject.slug && (
         <aside aria-label="WhatsApp chatbot services" className="gutter border-t border-[var(--color-line)] py-12">
           <p className="mb-5 text-[length:var(--step-lead)]">Want a WhatsApp chatbot built for your business?</p>
-          <Button href="/#services" arrow>Explore chatbot services</Button>
+          <Button href="/#services" arrow>Explore my services</Button>
         </aside>
       )}
       <Footer

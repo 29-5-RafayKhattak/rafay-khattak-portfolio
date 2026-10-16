@@ -36,7 +36,7 @@ const client = cache(async () => getPayload({ config }));
 
 // CLI content migrations run outside Next's cache context. Rotate this key
 // with content migrations so persisted entries cannot hide the new copy/order.
-const CONTENT_REVISION = "20261017-business-chatbots";
+const CONTENT_REVISION = "20261017-software-solutions";
 
 /** Cached across requests under `tag`, and deduplicated within one render. */
 const cached = <T>(key: string, tag: string, fn: () => Promise<T>) =>

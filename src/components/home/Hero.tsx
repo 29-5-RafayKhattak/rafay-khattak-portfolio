@@ -407,7 +407,7 @@ export function Hero({
                 className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-3"
               >
                 <Button href="#services" arrow>
-                  WhatsApp Chatbots
+                  Explore Services
                 </Button>
                 <Button
                   variant="secondary"

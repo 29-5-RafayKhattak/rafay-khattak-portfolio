@@ -83,29 +83,3 @@ export const whatsappProject: Project = {
     },
   },
 };
-
-export const whatsappServices = {
-  label: "Services · WhatsApp Automation",
-  headline: "Your business. Your chatbot. Your way of working.",
-  intro:
-    "I build custom WhatsApp chatbots for any business — shops, restaurants, service providers and more. Connect your information and tools so customers can get answers, place orders or make requests without waiting for a manual reply.",
-  offerings: [
-    {
-      number: "01", title: "Customer enquiries & support",
-      description: "Answer common questions about your products, services, hours and availability. Capture leads and appointment requests around your team's workflow.",
-    },
-    {
-      number: "02", title: "Products, menus & orders",
-      description: "Let customers browse products or menus, check prices and stock quantities, select items and place orders through WhatsApp.",
-    },
-    {
-      number: "03", title: "Connect the tools you use",
-      description: "Connect Excel, inventory software, business systems or other available data sources. The integration fits how your information is accessed and updated.",
-    },
-  ],
-  proofLabel: "Built around your business",
-  proof: "From a customer question to the right information or action — one connected WhatsApp experience.",
-  cta: "Discuss your chatbot",
-  enquiry: "Hi Rafay, I'd like a WhatsApp chatbot for my business.\n\nBusiness type:\nCurrent software, spreadsheets or information sources:\nWhat customers should be able to ask or do:\n",
-  nextStep: "Tell me what your business does, which tools you use and what you want to automate.",
-} as const;

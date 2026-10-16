@@ -7,7 +7,7 @@ import { ExperienceTimeline } from "@/components/home/ExperienceTimeline";
 import { EducationSection } from "@/components/home/EducationSection";
 import { Technologies } from "@/components/home/Technologies";
 import { ContactCTA } from "@/components/home/ContactCTA";
-import { WhatsAppServices } from "@/components/home/WhatsAppServices";
+import { BusinessServices } from "@/components/home/BusinessServices";
 import { Footer } from "@/components/layout/Footer";
 import {
   getAbout,
@@ -136,7 +136,7 @@ export default async function Home() {
         <StatsSequence stats={stats} label={labels.stats} />
         <ProjectsShowcase projects={projects.map(projectSummary)} label={labels.work} />
         <HorizontalStatement horizontalWords={settings.horizontalWords} />
-        <WhatsAppServices email={contact.email} />
+        <BusinessServices email={contact.email} />
         <ExperienceTimeline experience={experience} label={labels.experience} />
         <EducationSection
           education={education}

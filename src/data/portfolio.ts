@@ -25,7 +25,7 @@ export const person = {
   /** Short-form title used where the interpunct is too wide (mobile, footer). */
   titleShort: "AI Engineer & Software Developer",
   intro:
-    "I build AI-powered software and WhatsApp chatbots that connect businesses to their inventory, customers and orders.",
+    "I build complete software solutions — from websites and inventory systems to AI-powered tools, automation and WhatsApp Business integrations.",
   availability: "Open for New Projects",
   /* Confirmed indirectly and safely: FAST-NUCES is a Pakistani university
      and the client operates in Pakistan's onshore fields. Kept at country
@@ -52,7 +52,7 @@ export const contact = {
   /* Written the way it should be read. The `tel:` link strips the spacing. */
   phone: "+92 3361123334",
   headline: ["LET'S BUILD", "SOMETHING", "INTELLIGENT."],
-  subline: "Need a WhatsApp chatbot, inventory integration or custom software?",
+  subline: "Need custom software, an AI solution or connected business systems?",
   sublineAccent: "Let's talk.",
   cta: "Start a Conversation",
 } as const;
@@ -126,7 +126,7 @@ export const about = {
    * credential being cashed rather than work being described.
    */
   paragraph:
-    "I'm studying Data Science at FAST-NUCES and building software professionally, from company websites and internal operations systems to AI-powered products. I also build custom WhatsApp chatbots for any business, connecting your software, spreadsheets and business information to automate customer enquiries, orders and requests.",
+    "I'm studying Data Science at FAST-NUCES and building software professionally. My work spans websites, inventory and internal operations systems, data tools, AI and automation. I build solutions around how a business works, then connect its software, data and customer channels — including WhatsApp Business chatbots — so the pieces work together.",
   label: "About",
 } as const;
 
@@ -474,7 +474,7 @@ export const site: Site = {
    * the structured data, where they belong.
    */
   description:
-    "Rafay Khattak builds AI-powered software and custom WhatsApp chatbots for any business, connecting your tools, data and customer workflows.",
+    "Rafay Khattak builds custom software, websites, inventory and business systems, AI tools and automation, with integrations including WhatsApp Business chatbots.",
   builtBy: "Designed & Built by Rafay Khattak",
   url: SITE_ORIGIN,
 };

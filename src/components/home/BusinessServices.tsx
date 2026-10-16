@@ -1,12 +1,13 @@
 import Link from "next/link";
-import { ArrowUpRight, Database, MessageCircle, Send } from "lucide-react";
+import { ArrowUpRight, Database, Code2, Workflow } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { whatsappProject, whatsappServices as content } from "@/data/whatsapp";
+import { whatsappProject } from "@/data/whatsapp";
+import { services as content } from "@/data/services";
 
-export function WhatsAppServices({ email }: { email: string }) {
-  const enquiryHref = `mailto:${email}?subject=${encodeURIComponent("WhatsApp chatbot for my business")}&body=${encodeURIComponent(content.enquiry)}`;
+export function BusinessServices({ email }: { email: string }) {
+  const enquiryHref = `mailto:${email}?subject=${encodeURIComponent("Software project enquiry")}&body=${encodeURIComponent(content.enquiry)}`;
 
   return (
     <section id="services" aria-labelledby="services-title" data-tone="paper" className="relative z-0 scroll-mt-28 bg-[var(--color-cream)]">
@@ -27,12 +28,12 @@ export function WhatsAppServices({ email }: { email: string }) {
           </div>
 
           <div className="rounded-3xl bg-[#183d32] p-6 text-[#f0f3ed] sm:p-9">
-            <p className="eyebrow text-[#c1d4c7]">How it connects</p>
+            <p className="eyebrow text-[#c1d4c7]">Built to work together</p>
             <ol className="mt-7 space-y-5">
               {[
-                { icon: MessageCircle, title: "Your customer asks", note: "A question, order or service request" },
-                { icon: Database, title: "Your business data connects", note: "Software, spreadsheets or business information" },
-                { icon: Send, title: "Your chatbot responds", note: "Answers and next steps through WhatsApp" },
+                { icon: Code2, title: "Build the right software", note: "Websites, applications and tools around your workflow" },
+                { icon: Database, title: "Connect your systems and data", note: "Inventory, spreadsheets and existing business software" },
+                { icon: Workflow, title: "Automate the everyday work", note: "AI-powered tools, connected workflows and customer channels" },
               ].map(({ icon: Icon, title, note }) => (
                 <li key={title} className="flex gap-4 border-b border-white/15 pb-5 last:border-0 last:pb-0">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/25"><Icon size={19} aria-hidden="true" /></span>
