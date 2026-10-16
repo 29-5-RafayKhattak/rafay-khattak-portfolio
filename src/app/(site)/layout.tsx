@@ -6,7 +6,6 @@ import { OG_IMAGE, SEARCH_NAME, searchTitle } from "@/lib/seo";
 import { MotionProvider } from "@/components/layout/MotionProvider";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { Navbar } from "@/components/layout/Navbar";
-import { Cursor } from "@/components/ui/Cursor";
 
 import "../globals.css";
 
@@ -103,7 +102,6 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <MotionProvider>
           <SmoothScroll>
-            <Cursor />
             {/*
               Navigation lives outside .shell so the shell's `overflow: clip`
               can never interfere with a fixed element. It mirrors the shell's

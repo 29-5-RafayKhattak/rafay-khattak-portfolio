@@ -23,6 +23,7 @@ import {
 } from "@/lib/cms/queries";
 import { personGraph } from "@/lib/seo";
 import { SITE_ORIGIN } from "@/lib/site-origin";
+import { projectSummary } from "@/lib/project-summary";
 
 /**
  * The homepage is one continuous scroll. Sections are ordered so the page
@@ -133,7 +134,7 @@ export default async function Home() {
         />
         <AboutIntro about={about} label={labels.about} />
         <StatsSequence stats={stats} label={labels.stats} />
-        <ProjectsShowcase projects={projects} label={labels.work} />
+        <ProjectsShowcase projects={projects.map(projectSummary)} label={labels.work} />
         <HorizontalStatement horizontalWords={settings.horizontalWords} />
         <WhatsAppServices email={contact.email} />
         <ExperienceTimeline experience={experience} label={labels.experience} />

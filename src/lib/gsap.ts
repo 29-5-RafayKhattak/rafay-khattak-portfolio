@@ -41,3 +41,14 @@ if (typeof window !== "undefined") {
 }
 
 export { gsap, ScrollTrigger };
+
+// Many sections mount together. Measure the page once per frame, rather than
+// making each section remeasure every other section in its own callback.
+let refreshFrame: number | undefined;
+export function scheduleScrollRefresh() {
+  if (typeof window === "undefined" || refreshFrame !== undefined) return;
+  refreshFrame = requestAnimationFrame(() => {
+    refreshFrame = undefined;
+    ScrollTrigger.refresh();
+  });
+}

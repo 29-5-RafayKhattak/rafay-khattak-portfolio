@@ -2,7 +2,7 @@
 
 import { useRef, type RefObject } from "react";
 
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap, ScrollTrigger, scheduleScrollRefresh } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
@@ -45,10 +45,9 @@ export function useScrollScene<T extends HTMLElement>(
 
     // Section heights settle after fonts swap and images decode; re-measure
     // once on the next frame so pinned ranges match the final layout.
-    const raf = requestAnimationFrame(() => ScrollTrigger.refresh());
+    scheduleScrollRefresh();
 
     return () => {
-      cancelAnimationFrame(raf);
       ctx.revert();
     };
   }, [reducedMotion, ref]);

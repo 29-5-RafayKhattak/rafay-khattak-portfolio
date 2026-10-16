@@ -4,16 +4,15 @@ import type { Project } from "@/data/projects";
 export const whatsappProject: Project = {
   id: "whatsapp-inventory-assistant",
   slug: "whatsapp-inventory-assistant",
-  index: "07",
-  name: "WhatsApp Inventory Assistant",
-  category: "WhatsApp Automation · Retail",
-  company: "Laptop store",
+  index: "01",
+  name: "WhatsApp Business Chatbots",
+  category: "Business Automation · WhatsApp",
   year: "2026",
   description:
-    "A laptop store's inventory, connected to WhatsApp. Customers get automatic answers about products, prices and stock without waiting for a salesperson.",
+    "Custom WhatsApp chatbots for any business — connected to your information, inventory and software to answer customers and handle everyday requests automatically.",
   visual: "flow",
   accent: "#427462",
-  tags: ["WhatsApp", "Inventory Integration", "Customer Enquiries"],
+  tags: ["WhatsApp", "Business Integration", "Customer Automation"],
   palette: {
     accent: "#183d32",
     accentDeep: "#102a23",
@@ -26,22 +25,22 @@ export const whatsappProject: Project = {
   },
   caseStudy: {
     statement:
-      "Answers from the store's inventory. Delivered automatically on WhatsApp.",
+      "Your business knowledge. Your workflows. Available to customers on WhatsApp.",
     seoDescription:
-      "A laptop-store WhatsApp chatbot by Rafay Khattak, connected to inventory to answer customer questions about products, prices and available quantities.",
-    wordmark: { lead: "WhatsApp", tail: "Inventory Assistant", accent: "lead" },
-    heroNote: "Completed client project · Laptop retail",
+      "Custom WhatsApp chatbots for any business by Rafay Khattak. Automate customer enquiries, inventory checks, orders and requests with your existing tools.",
+    wordmark: { lead: "WhatsApp", tail: "Business Chatbots", accent: "lead" },
+    heroNote: "Custom integrations · Built around your business",
     meta: [
-      { label: "Business", value: "Laptop store" },
+      { label: "For", value: "Retail, hospitality, services & more" },
       { label: "Channel", value: "WhatsApp" },
-      { label: "Role", value: "Chatbot & inventory integration" },
+      { label: "Role", value: "Chatbot & business systems integration" },
     ],
     disciplines: ["Business Automation", "Chatbot Integration", "Inventory Integration"],
-    technologies: ["WhatsApp", "Store Inventory"],
+    technologies: ["WhatsApp", "Business Data & Software"],
     technicalNotes: [],
     media: [],
     technicalSummary:
-      "The chatbot connects customer conversations on WhatsApp to the laptop store's inventory and uses that information to answer product, price and stock enquiries automatically.",
+      "I connect WhatsApp conversations to the information and tools a business uses: Excel files, inventory systems, menus, service details and other accessible data sources. Each integration is scoped to the business's workflow and the access its systems support.",
     repository: "Implementation details are not published in this case study.",
     publicArtifacts: "Project overview and service capabilities.",
     evidence: {
@@ -52,33 +51,34 @@ export const whatsappProject: Project = {
     },
     sections: [
       {
-        id: "challenge", number: "01", title: "Every stock question needed a person.",
-        body: "Customers ask which laptops are available, how much they cost and how many are in stock. Answering those questions manually means a salesperson has to be available and check the store's records for each enquiry.",
+        id: "challenge", number: "01", title: "Your customers have questions. Your team has work to do.",
+        body: "From product availability and prices to menus, opening hours and service enquiries, customers often need the same information. I build WhatsApp chatbots around your business so those conversations can move forward without someone manually answering every message.",
       },
       {
-        id: "integration", number: "02", title: "Connect the conversation to the inventory.",
-        body: "I integrated a WhatsApp chatbot with the laptop store's inventory. The chatbot reads the connected inventory and responds to customers with product information, prices and available quantities, without requiring a salesperson to be active in the conversation.",
+        id: "integration", number: "02", title: "A chatbot that works with your business.",
+        body: "Connect the information you already maintain — Excel inventory, business software, a product catalogue, a menu or service information — to a WhatsApp chatbot. The workflow can answer questions, guide customers through choices and capture orders or requests. We define what it should handle and when your team should take over.",
         tone: "surface", figure: "architecture",
       },
       {
-        id: "outcome", number: "03", title: "Customers can ask. The store can answer automatically.",
-        body: "Routine inventory enquiries can be handled through the customer's WhatsApp conversation. The store's own inventory provides the information behind the answers, reducing the need for staff to look up and repeat the same details manually.",
+        id: "your-business", number: "03", title: "Any business. A workflow of its own.",
+        body: [
+          "For retailers and wholesalers: product enquiries, pricing, availability and quantities from connected inventory.",
+          "For restaurants and food businesses: menu browsing, item selection and order capture in the conversation.",
+          "For service providers and other businesses: frequently asked questions, service information, lead capture and appointment requests, tailored to how your team works.",
+          "Your business does not need to fit a template. Tell me what customers ask, what you want to automate and which tools you use; I will scope the integration around that.",
+        ],
       },
       {
-        id: "your-business", number: "04", title: "The same service, built around your business.",
-        body: [
-          "I offer WhatsApp chatbot integrations for laptop shops, mobile stores and other retailers. Customers can ask about products, prices, availability and quantities using the inventory your business already maintains.",
-          "For restaurants, I offer menu browsing, item selection and order capture through WhatsApp, so a member of staff does not need to manually handle every ordering conversation.",
-          "Your inventory may live in Excel, an existing software system or another data source. The integration is scoped around how that source can be accessed and updated. Tell me what you use and what you want your customers to be able to do.",
-        ],
+        id: "client-example", number: "04", title: "One real example: inventory-connected retail.",
+        body: "I completed a WhatsApp chatbot integration for a laptop store, connecting its inventory so customers could ask about products, prices and available quantities without waiting for a salesperson. That project is one application of the service — the chatbot and integrations can be tailored to a different business and workflow.",
         tone: "surface",
       },
     ],
     architecture: {
       stack: [
-        { id: "question", label: "Customer on WhatsApp", note: "Product, price or stock enquiry" },
-        { id: "inventory", label: "Connected store inventory", note: "Product information and available quantities" },
-        { id: "answer", label: "Automatic reply", note: "An answer in the customer's conversation" },
+        { id: "question", label: "Customer on WhatsApp", note: "A question, order or service request" },
+        { id: "inventory", label: "Your business information", note: "Software, spreadsheets, menus or service details" },
+        { id: "answer", label: "A useful response or next step", note: "Tailored to your customer workflow" },
       ],
     },
   },
@@ -86,26 +86,26 @@ export const whatsappProject: Project = {
 
 export const whatsappServices = {
   label: "Services · WhatsApp Automation",
-  headline: "Your inventory. Your menu. One WhatsApp conversation.",
+  headline: "Your business. Your chatbot. Your way of working.",
   intro:
-    "I build WhatsApp chatbots that connect to your business data, answer customer questions and take restaurant orders — without someone having to reply to every message.",
+    "I build custom WhatsApp chatbots for any business — shops, restaurants, service providers and more. Connect your information and tools so customers can get answers, place orders or make requests without waiting for a manual reply.",
   offerings: [
     {
-      number: "01", title: "Retail & inventory enquiries",
-      description: "Let customers check products, prices, availability and quantities directly on WhatsApp. Built for laptop shops, mobile stores and other retailers.",
+      number: "01", title: "Customer enquiries & support",
+      description: "Answer common questions about your products, services, hours and availability. Capture leads and appointment requests around your team's workflow.",
     },
     {
-      number: "02", title: "Restaurant menus & orders",
-      description: "Give customers your menu, help them select items and capture their food orders in the conversation, even when your team is busy.",
+      number: "02", title: "Products, menus & orders",
+      description: "Let customers browse products or menus, check prices and stock quantities, select items and place orders through WhatsApp.",
     },
     {
       number: "03", title: "Connect the tools you use",
-      description: "Integrate Excel inventory, existing store software or another inventory source. I scope the connection around your system's access and update options.",
+      description: "Connect Excel, inventory software, business systems or other available data sources. The integration fits how your information is accessed and updated.",
     },
   ],
-  proofLabel: "Built for a laptop store",
-  proof: "An inventory-connected WhatsApp chatbot that answers customer enquiries automatically.",
+  proofLabel: "Built around your business",
+  proof: "From a customer question to the right information or action — one connected WhatsApp experience.",
   cta: "Discuss your chatbot",
-  enquiry: "Hi Rafay, I'd like a WhatsApp chatbot for my business.\n\nBusiness type:\nCurrent inventory software or Excel setup:\nWhat customers should be able to ask or order:\n",
-  nextStep: "Tell me your business type, how you manage inventory or menus, and what you want to automate.",
+  enquiry: "Hi Rafay, I'd like a WhatsApp chatbot for my business.\n\nBusiness type:\nCurrent software, spreadsheets or information sources:\nWhat customers should be able to ask or do:\n",
+  nextStep: "Tell me what your business does, which tools you use and what you want to automate.",
 } as const;

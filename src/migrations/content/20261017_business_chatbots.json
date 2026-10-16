@@ -1,0 +1,159 @@
+{
+  "slug": "whatsapp-inventory-assistant",
+  "project": {
+    "name": "WhatsApp Business Chatbots",
+    "category": "Business Automation · WhatsApp",
+    "company": null,
+    "description": "Custom WhatsApp chatbots for any business — connected to your information, inventory and software to answer customers and handle everyday requests automatically.",
+    "tags": [
+      {
+        "value": "WhatsApp"
+      },
+      {
+        "value": "Business Integration"
+      },
+      {
+        "value": "Customer Automation"
+      }
+    ],
+    "caseStudy": {
+      "statement": "Your business knowledge. Your workflows. Available to customers on WhatsApp.",
+      "seoDescription": "Custom WhatsApp chatbots for any business by Rafay Khattak. Automate customer enquiries, inventory checks, orders and requests with your existing tools.",
+      "wordmark": {
+        "lead": "WhatsApp",
+        "tail": "Business Chatbots",
+        "accent": "lead"
+      },
+      "heroNote": "Custom integrations · Built around your business",
+      "meta": [
+        {
+          "label": "For",
+          "value": "Retail, hospitality, services & more"
+        },
+        {
+          "label": "Channel",
+          "value": "WhatsApp"
+        },
+        {
+          "label": "Role",
+          "value": "Chatbot & business systems integration"
+        }
+      ],
+      "disciplines": [
+        {
+          "value": "Business Automation"
+        },
+        {
+          "value": "Chatbot Integration"
+        },
+        {
+          "value": "Inventory Integration"
+        }
+      ],
+      "technologies": [
+        {
+          "value": "WhatsApp"
+        },
+        {
+          "value": "Business Data & Software"
+        }
+      ],
+      "technicalSummary": "I connect WhatsApp conversations to the information and tools a business uses: Excel files, inventory systems, menus, service details and other accessible data sources. Each integration is scoped to the business's workflow and the access its systems support.",
+      "sections": [
+        {
+          "number": "01",
+          "title": "Your customers have questions. Your team has work to do.",
+          "sectionId": "challenge",
+          "body": [
+            {
+              "value": "From product availability and prices to menus, opening hours and service enquiries, customers often need the same information. I build WhatsApp chatbots around your business so those conversations can move forward without someone manually answering every message."
+            }
+          ]
+        },
+        {
+          "number": "02",
+          "title": "A chatbot that works with your business.",
+          "tone": "surface",
+          "figure": "architecture",
+          "sectionId": "integration",
+          "body": [
+            {
+              "value": "Connect the information you already maintain — Excel inventory, business software, a product catalogue, a menu or service information — to a WhatsApp chatbot. The workflow can answer questions, guide customers through choices and capture orders or requests. We define what it should handle and when your team should take over."
+            }
+          ]
+        },
+        {
+          "number": "03",
+          "title": "Any business. A workflow of its own.",
+          "sectionId": "your-business",
+          "body": [
+            {
+              "value": "For retailers and wholesalers: product enquiries, pricing, availability and quantities from connected inventory."
+            },
+            {
+              "value": "For restaurants and food businesses: menu browsing, item selection and order capture in the conversation."
+            },
+            {
+              "value": "For service providers and other businesses: frequently asked questions, service information, lead capture and appointment requests, tailored to how your team works."
+            },
+            {
+              "value": "Your business does not need to fit a template. Tell me what customers ask, what you want to automate and which tools you use; I will scope the integration around that."
+            }
+          ]
+        },
+        {
+          "number": "04",
+          "title": "One real example: inventory-connected retail.",
+          "tone": "surface",
+          "sectionId": "client-example",
+          "body": [
+            {
+              "value": "I completed a WhatsApp chatbot integration for a laptop store, connecting its inventory so customers could ask about products, prices and available quantities without waiting for a salesperson. That project is one application of the service — the chatbot and integrations can be tailored to a different business and workflow."
+            }
+          ]
+        }
+      ],
+      "architecture": {
+        "stack": [
+          {
+            "label": "Customer on WhatsApp",
+            "note": "A question, order or service request",
+            "layerId": "question"
+          },
+          {
+            "label": "Your business information",
+            "note": "Software, spreadsheets, menus or service details",
+            "layerId": "inventory"
+          },
+          {
+            "label": "A useful response or next step",
+            "note": "Tailored to your customer workflow",
+            "layerId": "answer"
+          }
+        ]
+      }
+    }
+  },
+  "changes": {
+    "about": {
+      "before": "I'm studying Data Science at FAST-NUCES and building software professionally, from company websites and internal operations systems to AI-powered products. My latest specialty is WhatsApp automation: I connected a laptop store's inventory to a chatbot that answers customer enquiries automatically. I now offer inventory and software integrations for retailers, plus menu and ordering chatbots for restaurants.",
+      "after": "I'm studying Data Science at FAST-NUCES and building software professionally, from company websites and internal operations systems to AI-powered products. I also build custom WhatsApp chatbots for any business, connecting your software, spreadsheets and business information to automate customer enquiries, orders and requests."
+    },
+    "description": {
+      "before": "Rafay Khattak builds AI-powered software and WhatsApp chatbots for retailers and restaurants, connecting inventory, Excel, menus and customer orders.",
+      "after": "Rafay Khattak builds AI-powered software and custom WhatsApp chatbots for any business, connecting your tools, data and customer workflows."
+    },
+    "stat": {
+      "before": {
+        "value": "03",
+        "label": "Professional Systems",
+        "caption": "Two for a wireline company; one WhatsApp integration for a laptop store."
+      },
+      "after": {
+        "value": "03",
+        "label": "Professional Systems",
+        "caption": "Business systems spanning websites, internal operations and WhatsApp automation."
+      }
+    }
+  }
+}

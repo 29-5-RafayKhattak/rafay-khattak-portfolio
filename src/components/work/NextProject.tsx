@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-import type { Project } from "@/data/projects";
+import type { ProjectSummary } from "@/lib/project-summary";
 import { fadeUp, IN_VIEW_SOFT } from "@/lib/animations";
 
 /**
@@ -19,7 +19,7 @@ import { fadeUp, IN_VIEW_SOFT } from "@/lib/animations";
  * end is also the only place a future project can be announced without
  * inventing one to fill the slot.
  */
-export function NextProject({ project }: { project?: Project }) {
+export function NextProject({ project }: { project?: ProjectSummary }) {
   if (!project) {
     return (
       <section

@@ -5,6 +5,7 @@ import { CaseStudy } from "@/components/work/CaseStudy";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { whatsappProject } from "@/data/whatsapp";
+import { projectSummary } from "@/lib/project-summary";
 import {
   getNextProject,
   getProject,
@@ -101,10 +102,10 @@ export default async function WorkCaseStudyPage({
 
   return (
     <>
-      <CaseStudy project={project} nextProject={nextProject} />
+      <CaseStudy project={project} nextProject={nextProject ? projectSummary(nextProject) : undefined} />
       {project.slug === whatsappProject.slug && (
         <aside aria-label="WhatsApp chatbot services" className="gutter border-t border-[var(--color-line)] py-12">
-          <p className="mb-5 text-[length:var(--step-lead)]">Want a WhatsApp chatbot for your shop or restaurant?</p>
+          <p className="mb-5 text-[length:var(--step-lead)]">Want a WhatsApp chatbot built for your business?</p>
           <Button href="/#services" arrow>Explore chatbot services</Button>
         </aside>
       )}

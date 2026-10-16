@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import { whatsappProject } from "@/data/whatsapp";
 
 /**
@@ -381,7 +380,7 @@ const WLE_STATEMENT =
 const wleWebsite: Project = {
   id: "wle-website",
   slug: "wle-website",
-  index: "01",
+  index: "02",
   name: "WLE Website",
   category: "Professional Work",
   company: "Well Logging Energy",
@@ -915,7 +914,7 @@ const IMS_STATEMENT =
 const internalManagementSystem: Project = {
   id: "internal-management-system",
   slug: "internal-management-system",
-  index: "02",
+  index: "03",
   name: "Internal Management System",
   category: "Professional Work",
   company: "Well Logging Energy",
@@ -1544,7 +1543,7 @@ const RIDEFLOW_STATEMENT =
 const rideflow: Project = {
   id: "rideflow",
   slug: "rideflow",
-  index: "03",
+  index: "04",
   name: "RideFlow",
   category: "Relational Systems",
   year: "2026",
@@ -2113,7 +2112,7 @@ const DATAPULSE_STATEMENT =
 const datapulse: Project = {
   id: "datapulse",
   slug: "datapulse",
-  index: "04",
+  index: "05",
   name: "DataPulse",
   category: "Analytics",
   year: "May 2026",
@@ -2660,7 +2659,7 @@ const MICROMOUSE_STATEMENT =
 const micromouse: Project = {
   id: "distributed-ai-micromouse",
   slug: "distributed-ai-micromouse",
-  index: "05",
+  index: "06",
   name: "Distributed AI Micromouse",
   category: "Edge AI Research",
   year: "2026 — Present",
@@ -3294,7 +3293,7 @@ const TICK_STATEMENT =
 const tickPipeline: Project = {
   id: "financial-tick-data-pipeline",
   slug: "financial-tick-data-pipeline",
-  index: "06",
+  index: "07",
   name: "Financial Tick Data Pipeline",
   category: "C++ & Operating Systems",
   year: "May 2026",
@@ -3819,13 +3818,13 @@ const tickPipeline: Project = {
  * fictional.
  */
 export const projects: Project[] = [
+  whatsappProject,
   wleWebsite,
   internalManagementSystem,
   rideflow,
   datapulse,
   micromouse,
   tickPipeline,
-  whatsappProject,
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -3861,20 +3860,6 @@ export const getNextProject = (slug: string) => {
  * without a palette silently uses the portfolio's own tokens and nothing
  * outside the themed container is affected.
  */
-export const paletteVars = (palette?: ProjectPalette) =>
-  palette
-    ? ({
-        "--p-accent": palette.accent,
-        "--p-accent-deep": palette.accentDeep,
-        "--p-muted": palette.muted,
-        "--p-surface": palette.surface,
-        "--p-surface-soft": palette.surfaceSoft ?? palette.surface,
-        "--p-surface-alt": palette.surfaceAlt ?? palette.surface,
-        "--p-warm": palette.warm,
-        "--p-cream": palette.cream,
-      } as CSSProperties)
-    : undefined;
-
 /** Background treatments a case-study section can take. */
 export type SectionTone =
   | "paper"

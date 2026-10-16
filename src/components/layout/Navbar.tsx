@@ -319,11 +319,8 @@ export function Navbar({
       }
 
       /*
-       * Closing and scrolling in the same tick does not work: Lenis owns the
-       * scroll position and is currently stopped, so a scrollTo issued before
-       * it restarts is swallowed and the reader is left on the section they
-       * started from. Release the lock here rather than waiting for the effect
-       * cleanup, then move on the next frame.
+       * Release the menu's scroll lock before navigating, then let its close
+       * state commit before starting the anchor scroll on the next frame.
        */
       setOpen(false);
       setLocked(false);

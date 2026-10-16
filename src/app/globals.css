@@ -218,18 +218,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Lenis ------------------------------------------------------------------ */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
 /* Focus ------------------------------------------------------------------ */
 :focus-visible {
   outline: 2px solid var(--color-accent);
@@ -433,12 +421,6 @@ html.lenis body {
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
-}
-
-/* Hide the native cursor only where the custom one is genuinely active. */
-.custom-cursor-active,
-.custom-cursor-active * {
-  cursor: none !important;
 }
 
 /* ==========================================================================

@@ -19,7 +19,7 @@ import {
 import { anchorOffset } from "@/lib/navigation";
 import { SEARCH_NAME } from "@/lib/seo";
 import { LAYER, SCENE, sceneHeight, sceneTrigger } from "@/lib/scene";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap, scheduleScrollRefresh } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useSmoothScroll } from "@/components/layout/SmoothScroll";
@@ -163,10 +163,9 @@ export function Hero({
     }, sectionRef);
 
     // Heights depend on the portrait finishing layout; re-measure once.
-    const raf = requestAnimationFrame(() => ScrollTrigger.refresh());
+    scheduleScrollRefresh();
 
     return () => {
-      cancelAnimationFrame(raf);
       ctx.revert();
     };
   }, [reducedMotion]);

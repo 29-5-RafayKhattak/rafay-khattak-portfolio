@@ -5,11 +5,12 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import {
-  paletteVars,
   type CaseStudy as CaseStudyData,
   type FigureKey,
   type Project,
 } from "@/data/projects";
+import { paletteVars } from "@/lib/project-palette";
+import type { ProjectSummary } from "@/lib/project-summary";
 import { AccessModel } from "@/components/work/AccessModel";
 import { AggregationFlow } from "@/components/work/AggregationFlow";
 import { AnalysisTooling } from "@/components/work/AnalysisTooling";
@@ -255,7 +256,7 @@ export function CaseStudy({
   nextProject,
 }: {
   project: Project;
-  nextProject?: Project;
+  nextProject?: ProjectSummary;
 }) {
   const study = project.caseStudy;
   if (!study) return null;

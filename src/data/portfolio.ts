@@ -126,7 +126,7 @@ export const about = {
    * credential being cashed rather than work being described.
    */
   paragraph:
-    "I'm studying Data Science at FAST-NUCES and building software professionally, from company websites and internal operations systems to AI-powered products. My latest specialty is WhatsApp automation: I connected a laptop store's inventory to a chatbot that answers customer enquiries automatically. I now offer inventory and software integrations for retailers, plus menu and ordering chatbots for restaurants.",
+    "I'm studying Data Science at FAST-NUCES and building software professionally, from company websites and internal operations systems to AI-powered products. I also build custom WhatsApp chatbots for any business, connecting your software, spreadsheets and business information to automate customer enquiries, orders and requests.",
   label: "About",
 } as const;
 
@@ -158,7 +158,7 @@ export const stats: Stat[] = [
   {
     value: "03",
     label: "Professional Systems",
-    caption: "Two for a wireline company; one WhatsApp integration for a laptop store.",
+    caption: "Business systems spanning websites, internal operations and WhatsApp automation.",
   },
   {
     value: "04",
@@ -474,7 +474,7 @@ export const site: Site = {
    * the structured data, where they belong.
    */
   description:
-    "Rafay Khattak builds AI-powered software and WhatsApp chatbots for retailers and restaurants, connecting inventory, Excel, menus and customer orders.",
+    "Rafay Khattak builds AI-powered software and custom WhatsApp chatbots for any business, connecting your tools, data and customer workflows.",
   builtBy: "Designed & Built by Rafay Khattak",
   url: SITE_ORIGIN,
 };

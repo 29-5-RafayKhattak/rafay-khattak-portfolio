@@ -35,8 +35,8 @@ import { TAGS } from "@/lib/cms/tags";
 const client = cache(async () => getPayload({ config }));
 
 // CLI content migrations run outside Next's cache context. Rotate this key
-// with the WhatsApp content migration so persisted entries cannot hide it.
-const CONTENT_REVISION = "20261016-whatsapp-v1";
+// with content migrations so persisted entries cannot hide the new copy/order.
+const CONTENT_REVISION = "20261017-business-chatbots";
 
 /** Cached across requests under `tag`, and deduplicated within one render. */
 const cached = <T>(key: string, tag: string, fn: () => Promise<T>) =>

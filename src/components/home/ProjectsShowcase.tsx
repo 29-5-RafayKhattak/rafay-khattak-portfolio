@@ -2,8 +2,8 @@
 
 import { useRef } from "react";
 
-import type { Project } from "@/data/projects";
-import { paletteVars } from "@/data/projects";
+import type { ProjectSummary } from "@/lib/project-summary";
+import { paletteVars } from "@/lib/project-palette";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { LAYER, projectsSceneHeight, sceneTrigger } from "@/lib/scene";
@@ -34,7 +34,7 @@ export function ProjectsShowcase({
   projects,
   label,
 }: {
-  projects: Project[];
+  projects: ProjectSummary[];
   label: string;
 }) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -125,7 +125,6 @@ export function ProjectsShowcase({
         );
       });
 
-
       /*
        * No opacity crossfade, for the same reason as the metrics: dissolving
        * one project into another leaves both on screen at half strength in the
@@ -140,14 +139,11 @@ export function ProjectsShowcase({
       slides.forEach((slide, i) => {
         const { visual, index, copy } = parts(slide);
         /*
-         * `pointerEvents` matters as much as opacity here. The slides are
-         * stacked with `absolute inset-0` and every one is left fully opaque —
-         * only masks and clip-path decide what is *seen*. Masks do not affect
-         * hit-testing, so without this the last slide in the DOM covers the
-         * whole stage and swallows every click, including the case-study CTA.
+         * Only the active slide should paint or receive input. During a wipe,
+         * two slides are visible, so pointer events transfer at its midpoint.
          */
         gsap.set(slide, {
-          opacity: 1,
+          autoAlpha: i === 0 ? 1 : 0,
           pointerEvents: i === 0 ? "auto" : "none",
         });
         /*
@@ -171,6 +167,9 @@ export function ProjectsShowcase({
         // --- arriving ---------------------------------------------------
         if (i > 0) {
           const enter = i * STEP - SWAP;
+
+          // Hidden slides should not keep their SVGs and GPU layers painted.
+          tl.set(slide, { autoAlpha: 1 }, enter);
 
           tl.fromTo(
             visual,
@@ -219,6 +218,11 @@ export function ProjectsShowcase({
               exit + TRAIL,
             )
             .set(slide, { pointerEvents: "none" }, exit + SWAP / 2);
+          tl.set(
+            slide,
+            { autoAlpha: 0 },
+            exit + SWAP + TRAIL + Math.max(0, copy.length - 1) * 0.04,
+          );
         }
       });
 
@@ -321,15 +325,11 @@ export function ProjectsShowcase({
               style={{
                 ...paletteVars(project.palette),
                 opacity: i === 0 ? 1 : 0,
+                visibility: i === 0 ? "visible" : "hidden",
                 pointerEvents: i === 0 ? "auto" : "none",
               }}
-              /*
-               * Deliberately not aria-hidden. Which project is visible is a
-               * function of scroll position, so a static aria-hidden would
-               * hide whichever one the reader is actually looking at. Leaving
-               * all five exposed also means a screen-reader user gets the
-               * whole list without having to scrub through the sequence.
-               */
+              // Visibility follows the sequence, keeping hidden slides out of
+              // the tab order. Reduced-motion users get the full list above.
             >
               {/*
                 The index column is deliberately narrow and its number is set

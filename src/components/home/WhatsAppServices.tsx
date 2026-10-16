@@ -30,9 +30,9 @@ export function WhatsAppServices({ email }: { email: string }) {
             <p className="eyebrow text-[#c1d4c7]">How it connects</p>
             <ol className="mt-7 space-y-5">
               {[
-                { icon: MessageCircle, title: "Your customer asks", note: "A product question or a food order" },
-                { icon: Database, title: "Your business data connects", note: "Inventory software, Excel or a menu" },
-                { icon: Send, title: "Your chatbot responds", note: "Answers and ordering through WhatsApp" },
+                { icon: MessageCircle, title: "Your customer asks", note: "A question, order or service request" },
+                { icon: Database, title: "Your business data connects", note: "Software, spreadsheets or business information" },
+                { icon: Send, title: "Your chatbot responds", note: "Answers and next steps through WhatsApp" },
               ].map(({ icon: Icon, title, note }) => (
                 <li key={title} className="flex gap-4 border-b border-white/15 pb-5 last:border-0 last:pb-0">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/25"><Icon size={19} aria-hidden="true" /></span>
@@ -44,7 +44,7 @@ export function WhatsAppServices({ email }: { email: string }) {
               <p className="eyebrow text-[#c1d4c7]">{content.proofLabel}</p>
               <p className="mt-3 leading-relaxed">{content.proof}</p>
               <Link href={`/work/${whatsappProject.slug}`} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-medium underline underline-offset-4">
-                Explore the laptop-store project <ArrowUpRight size={17} aria-hidden="true" />
+                Explore WhatsApp chatbot integrations <ArrowUpRight size={17} aria-hidden="true" />
               </Link>
             </div>
           </div>
