@@ -478,7 +478,7 @@ export function Navbar({
               {/* LEFT — identity ---------------------------------------- */}
               <motion.div variants={navPart} className="flex min-w-0 items-center">
                 {/*
-                  The monogram and the name are one link, not two: they name
+                  The symbol and the name are one link, not two: they name
                   the same destination, and splitting them would put two
                   home links a centimetre apart.
                 */}
@@ -488,14 +488,11 @@ export function Navbar({
                   className="tap group hidden min-w-0 items-center gap-[clamp(0.75rem,1.2vw,1.125rem)] lg:flex"
                 >
                   {/*
-                    The mark itself, not two letters set in a serif. `alt` is
-                    empty on purpose: the link already carries its own name
-                    from the wordmark beside it and the sr-only suffix below,
-                    and a second reading of "RK" would announce the same
-                    destination twice.
+                    The symbol is decorative: the link already carries its
+                    name from the wordmark and the sr-only suffix below.
                   */}
                   <Image
-                    src="/images/rk-monogram.png"
+                    src="/images/connected-intelligence.png"
                     alt=""
                     width={192}
                     height={192}
@@ -508,7 +505,7 @@ export function Navbar({
                     and `xl` the six links and the button already claim the
                     row: measured at 1024 the identity had 16px of slack and
                     was ellipsing its own name, which is worse than not
-                    setting it. The monogram carries the identity there, and
+                    setting it. The symbol carries the identity there, and
                     the full lockup returns as soon as there is room for it.
                   */}
                   <span
@@ -527,14 +524,14 @@ export function Navbar({
                   <span className="sr-only">— home</span>
                 </a>
 
-                {/* Below lg the identity is the monogram alone. */}
+                {/* Below lg the identity is the symbol alone. */}
                 <a
                   href={onHome ? "#home" : "/"}
                   onClick={go("#home")}
                   className="tap tap-square flex items-center lg:hidden"
                 >
                   <Image
-                    src="/images/rk-monogram.png"
+                    src="/images/connected-intelligence.png"
                     alt=""
                     width={192}
                     height={192}
