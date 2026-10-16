@@ -122,6 +122,9 @@ export function personGraph({
           "Data Science",
           "Full-Stack Development",
           "Intelligent Systems",
+          "WhatsApp Chatbot Integration",
+          "Inventory Automation",
+          "Restaurant Ordering Chatbots",
         ],
       },
       {

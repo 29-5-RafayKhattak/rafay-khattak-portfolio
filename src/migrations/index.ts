@@ -3,6 +3,7 @@ import * as migration_20260830_105053_experience_type_required from './20260830_
 import * as migration_20260830_105247_horizontal_words from './20260830_105247_horizontal_words';
 import * as migration_20260830_114859_media_storage_prefix from './20260830_114859_media_storage_prefix';
 import * as migration_20260901_000000_linkedin_vanity_url from './20260901_000000_linkedin_vanity_url';
+import * as migration_20261016_000000_whatsapp_specialty from './20261016_000000_whatsapp_specialty';
 
 export const migrations = [
   {
@@ -29,5 +30,10 @@ export const migrations = [
     up: migration_20260901_000000_linkedin_vanity_url.up,
     down: migration_20260901_000000_linkedin_vanity_url.down,
     name: '20260901_000000_linkedin_vanity_url',
+  },
+  {
+    up: migration_20261016_000000_whatsapp_specialty.up,
+    down: migration_20261016_000000_whatsapp_specialty.down,
+    name: '20261016_000000_whatsapp_specialty',
   },
 ];

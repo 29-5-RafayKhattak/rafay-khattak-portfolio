@@ -407,8 +407,8 @@ export function Hero({
                 animate="show"
                 className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-3"
               >
-                <Button href="#contact" arrow>
-                  Let&rsquo;s Collaborate
+                <Button href="#services" arrow>
+                  WhatsApp Chatbots
                 </Button>
                 <Button
                   variant="secondary"

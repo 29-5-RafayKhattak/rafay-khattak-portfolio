@@ -25,7 +25,7 @@ export const person = {
   /** Short-form title used where the interpunct is too wide (mobile, footer). */
   titleShort: "AI Engineer & Software Developer",
   intro:
-    "I build intelligent digital products, AI-powered systems and modern software experiences.",
+    "I build AI-powered software and WhatsApp chatbots that connect businesses to their inventory, customers and orders.",
   availability: "Open for New Projects",
   /* Confirmed indirectly and safely: FAST-NUCES is a Pakistani university
      and the client operates in Pakistan's onshore fields. Kept at country
@@ -52,7 +52,7 @@ export const contact = {
   /* Written the way it should be read. The `tel:` link strips the spacing. */
   phone: "+92 3361123334",
   headline: ["LET'S BUILD", "SOMETHING", "INTELLIGENT."],
-  subline: "Have a project, idea or opportunity?",
+  subline: "Need a WhatsApp chatbot, inventory integration or custom software?",
   sublineAccent: "Let's talk.",
   cta: "Start a Conversation",
 } as const;
@@ -67,6 +67,7 @@ export const navigation: NavItem[] = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Work", href: "#work" },
+  { label: "Services", href: "#services" },
   { label: "Experience", href: "#experience" },
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
@@ -125,7 +126,7 @@ export const about = {
    * credential being cashed rather than work being described.
    */
   paragraph:
-    "I'm four semesters into a Data Science degree at FAST-NUCES, building software professionally alongside it — a public site and self-hosted CMS, and an internal operations system a wireline company runs its reporting, crews and compliance on. Beyond that: relational systems, analytics and forecasting, edge-AI research, and systems programming. What carries across is a preference for boundaries written down rather than assumed.",
+    "I'm studying Data Science at FAST-NUCES and building software professionally, from company websites and internal operations systems to AI-powered products. My latest specialty is WhatsApp automation: I connected a laptop store's inventory to a chatbot that answers customer enquiries automatically. I now offer inventory and software integrations for retailers, plus menu and ordering chatbots for restaurants.",
   label: "About",
 } as const;
 
@@ -150,14 +151,14 @@ export type Stat = {
 
 export const stats: Stat[] = [
   {
-    value: "06",
+    value: "07",
     label: "Case Studies",
     caption: "Each written up in full, including what it has not proven.",
   },
   {
-    value: "02",
+    value: "03",
     label: "Professional Systems",
-    caption: "Built for a wireline company. One runs its daily operations.",
+    caption: "Two for a wireline company; one WhatsApp integration for a laptop store.",
   },
   {
     value: "04",
@@ -172,7 +173,7 @@ export const stats: Stat[] = [
   {
     value: "04",
     label: "Public Repositories",
-    caption: "Four of the six open to read, so the claims can be checked.",
+    caption: "Four of the seven open to read, so the claims can be checked.",
   },
 ];
 
@@ -473,7 +474,7 @@ export const site: Site = {
    * the structured data, where they belong.
    */
   description:
-    "Rafay Khattak is an AI engineer and software developer working across intelligent systems, data science and full-stack products. Selected work and case studies.",
+    "Rafay Khattak builds AI-powered software and WhatsApp chatbots for retailers and restaurants, connecting inventory, Excel, menus and customer orders.",
   builtBy: "Designed & Built by Rafay Khattak",
   url: SITE_ORIGIN,
 };

@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { whatsappProject } from "@/data/whatsapp";
 
 /**
  * -----------------------------------------------------------------------------
@@ -3824,6 +3825,7 @@ export const projects: Project[] = [
   datapulse,
   micromouse,
   tickPipeline,
+  whatsappProject,
 ];
 
 /* -------------------------------------------------------------------------- */

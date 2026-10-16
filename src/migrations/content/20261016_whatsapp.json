@@ -1,0 +1,213 @@
+{
+  "project": {
+    "slug": "whatsapp-inventory-assistant",
+    "index": "07",
+    "name": "WhatsApp Inventory Assistant",
+    "category": "WhatsApp Automation · Retail",
+    "company": "Laptop store",
+    "year": "2026",
+    "description": "A laptop store's inventory, connected to WhatsApp. Customers get automatic answers about products, prices and stock without waiting for a salesperson.",
+    "visual": "flow",
+    "accent": "#427462",
+    "tags": [
+      {
+        "value": "WhatsApp"
+      },
+      {
+        "value": "Inventory Integration"
+      },
+      {
+        "value": "Customer Enquiries"
+      }
+    ],
+    "palette": {
+      "enabled": true,
+      "accent": "#183d32",
+      "accentDeep": "#102a23",
+      "muted": "#719083",
+      "surface": "#e5ebe5",
+      "surfaceSoft": "#f0f3ed",
+      "surfaceAlt": "#e9eee8",
+      "warm": "#427462",
+      "cream": "#f0f3ed"
+    },
+    "caseStudy": {
+      "statement": "Answers from the store's inventory. Delivered automatically on WhatsApp.",
+      "seoDescription": "A laptop-store WhatsApp chatbot by Rafay Khattak, connected to inventory to answer customer questions about products, prices and available quantities.",
+      "wordmark": {
+        "lead": "WhatsApp",
+        "tail": "Inventory Assistant",
+        "accent": "lead"
+      },
+      "heroNote": "Completed client project · Laptop retail",
+      "meta": [
+        {
+          "label": "Business",
+          "value": "Laptop store"
+        },
+        {
+          "label": "Channel",
+          "value": "WhatsApp"
+        },
+        {
+          "label": "Role",
+          "value": "Chatbot & inventory integration"
+        }
+      ],
+      "disciplines": [
+        {
+          "value": "Business Automation"
+        },
+        {
+          "value": "Chatbot Integration"
+        },
+        {
+          "value": "Inventory Integration"
+        }
+      ],
+      "technologies": [
+        {
+          "value": "WhatsApp"
+        },
+        {
+          "value": "Store Inventory"
+        }
+      ],
+      "technicalSummary": "The chatbot connects customer conversations on WhatsApp to the laptop store's inventory and uses that information to answer product, price and stock enquiries automatically.",
+      "repository": "Implementation details are not published in this case study.",
+      "publicArtifacts": "Project overview and service capabilities.",
+      "evidence": {
+        "supported": "Completed integration for a laptop store: inventory-connected responses to customer enquiries on WhatsApp without a salesperson replying to each message.",
+        "notOverstated": "Restaurant ordering and integrations for other businesses are services available for new projects. No sales uplift or response-time figures are claimed for this implementation."
+      },
+      "sections": [
+        {
+          "number": "01",
+          "title": "Every stock question needed a person.",
+          "sectionId": "challenge",
+          "body": [
+            {
+              "value": "Customers ask which laptops are available, how much they cost and how many are in stock. Answering those questions manually means a salesperson has to be available and check the store's records for each enquiry."
+            }
+          ]
+        },
+        {
+          "number": "02",
+          "title": "Connect the conversation to the inventory.",
+          "tone": "surface",
+          "figure": "architecture",
+          "sectionId": "integration",
+          "body": [
+            {
+              "value": "I integrated a WhatsApp chatbot with the laptop store's inventory. The chatbot reads the connected inventory and responds to customers with product information, prices and available quantities, without requiring a salesperson to be active in the conversation."
+            }
+          ]
+        },
+        {
+          "number": "03",
+          "title": "Customers can ask. The store can answer automatically.",
+          "sectionId": "outcome",
+          "body": [
+            {
+              "value": "Routine inventory enquiries can be handled through the customer's WhatsApp conversation. The store's own inventory provides the information behind the answers, reducing the need for staff to look up and repeat the same details manually."
+            }
+          ]
+        },
+        {
+          "number": "04",
+          "title": "The same service, built around your business.",
+          "tone": "surface",
+          "sectionId": "your-business",
+          "body": [
+            {
+              "value": "I offer WhatsApp chatbot integrations for laptop shops, mobile stores and other retailers. Customers can ask about products, prices, availability and quantities using the inventory your business already maintains."
+            },
+            {
+              "value": "For restaurants, I offer menu browsing, item selection and order capture through WhatsApp, so a member of staff does not need to manually handle every ordering conversation."
+            },
+            {
+              "value": "Your inventory may live in Excel, an existing software system or another data source. The integration is scoped around how that source can be accessed and updated. Tell me what you use and what you want your customers to be able to do."
+            }
+          ]
+        }
+      ],
+      "architecture": {
+        "stack": [
+          {
+            "label": "Customer on WhatsApp",
+            "note": "Product, price or stock enquiry",
+            "layerId": "question"
+          },
+          {
+            "label": "Connected store inventory",
+            "note": "Product information and available quantities",
+            "layerId": "inventory"
+          },
+          {
+            "label": "Automatic reply",
+            "note": "An answer in the customer's conversation",
+            "layerId": "answer"
+          }
+        ]
+      },
+      "hasCaseStudy": true
+    },
+    "order": 6
+  },
+  "changes": {
+    "intro": {
+      "before": "I build intelligent digital products, AI-powered systems and modern software experiences.",
+      "after": "I build AI-powered software and WhatsApp chatbots that connect businesses to their inventory, customers and orders."
+    },
+    "description": {
+      "before": "Rafay Khattak is an AI engineer and software developer working across intelligent systems, data science and full-stack products. Selected work and case studies.",
+      "after": "Rafay Khattak builds AI-powered software and WhatsApp chatbots for retailers and restaurants, connecting inventory, Excel, menus and customer orders."
+    },
+    "about": {
+      "before": "I'm four semesters into a Data Science degree at FAST-NUCES, building software professionally alongside it — a public site and self-hosted CMS, and an internal operations system a wireline company runs its reporting, crews and compliance on. Beyond that: relational systems, analytics and forecasting, edge-AI research, and systems programming. What carries across is a preference for boundaries written down rather than assumed.",
+      "after": "I'm studying Data Science at FAST-NUCES and building software professionally, from company websites and internal operations systems to AI-powered products. My latest specialty is WhatsApp automation: I connected a laptop store's inventory to a chatbot that answers customer enquiries automatically. I now offer inventory and software integrations for retailers, plus menu and ordering chatbots for restaurants."
+    },
+    "contact": {
+      "before": "Have a project, idea or opportunity?",
+      "after": "Need a WhatsApp chatbot, inventory integration or custom software?"
+    },
+    "stats": [
+      {
+        "before": {
+          "value": "06",
+          "label": "Case Studies",
+          "caption": "Each written up in full, including what it has not proven."
+        },
+        "after": {
+          "value": "07",
+          "label": "Case Studies",
+          "caption": "Each written up in full, including what it has not proven."
+        }
+      },
+      {
+        "before": {
+          "value": "02",
+          "label": "Professional Systems",
+          "caption": "Built for a wireline company. One runs its daily operations."
+        },
+        "after": {
+          "value": "03",
+          "label": "Professional Systems",
+          "caption": "Two for a wireline company; one WhatsApp integration for a laptop store."
+        }
+      },
+      {
+        "before": {
+          "value": "04",
+          "label": "Public Repositories",
+          "caption": "Four of the six open to read, so the claims can be checked."
+        },
+        "after": {
+          "value": "04",
+          "label": "Public Repositories",
+          "caption": "Four of the seven open to read, so the claims can be checked."
+        }
+      }
+    ]
+  }
+}

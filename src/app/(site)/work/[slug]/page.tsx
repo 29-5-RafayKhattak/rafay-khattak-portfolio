@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 
 import { CaseStudy } from "@/components/work/CaseStudy";
 import { Footer } from "@/components/layout/Footer";
+import { Button } from "@/components/ui/Button";
+import { whatsappProject } from "@/data/whatsapp";
 import {
   getNextProject,
   getProject,
@@ -100,6 +102,12 @@ export default async function WorkCaseStudyPage({
   return (
     <>
       <CaseStudy project={project} nextProject={nextProject} />
+      {project.slug === whatsappProject.slug && (
+        <aside aria-label="WhatsApp chatbot services" className="gutter border-t border-[var(--color-line)] py-12">
+          <p className="mb-5 text-[length:var(--step-lead)]">Want a WhatsApp chatbot for your shop or restaurant?</p>
+          <Button href="/#services" arrow>Explore chatbot services</Button>
+        </aside>
+      )}
       <Footer
         navigation={settings.navigation}
         person={settings.person}
